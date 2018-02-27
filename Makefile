@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ade-verd <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2017/12/20 17:33:56 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/02/27 19:07:28 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,25 +17,24 @@ NAME = ProjectName
 CC = gcc
 
 # Directories
-SRC_PATH = ./
+SRC_PATH = src/
 OBJ_PATH = obj/
-LIB_PATH = libft
+LIB_PATH = libft/
 INC_PATH = ./includes \
 		   $(LIB_PATH)/includes
 
 # Includes & libraries
-CPPFLAGS = $(addprefix -I, $(INC_PATH))
-LDFLAGS = -Llibft
+CPPFLAGS = $(addprefix -I ,$(INC_PATH))
+LDFLAGS = -L $(LIB_PATH)
 LDLIBS = -lft
 
 # Sources
 SRC_NAME = \
 		   main.c\
 
-
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
 # Flags with OS Compatibiliy
@@ -91,13 +90,13 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 # **************************************************************************** #
 .PHONY: all, clean, fclean, re, norme
 
-all: libft_make $(OBJ_PATH) $(NAME)
+all: libft.a $(OBJ_PATH) $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 	@echo -e $(ASSEMBLING)
 
-libft_make:
+libft.a:
 	@make -C $(LIB_PATH)
 
 $(OBJ_PATH):
@@ -113,8 +112,8 @@ clean:
 	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
 	@echo -e $(OBJECTS_DEL)
 	@rm -Rf $(OBJ_PATH)
-	@echo -e "$(TITLE)clean libft$(END_TITLE)"
-	@make -C $(LIB_PATH) clean
+#	@echo -e "$(TITLE)clean libft$(END_TITLE)"
+	@make -C $(LIB_PATH) clean_quiet
 
 fclean:
 	@echo -e "$(TITLE)fclean $(NAME)$(END_TITLE)"
@@ -122,8 +121,8 @@ fclean:
 	@rm -Rf $(OBJ_PATH)
 	@echo -e $(BIN_DEL)
 	@rm -f $(NAME)
-	@echo -e "$(TITLE)fclean libft$(END_TITLE)"
-	@make -C $(LIB_PATH) fclean
+#	@echo -e "$(TITLE)fclean libft$(END_TITLE)"
+	@make -C $(LIB_PATH) fclean_quiet
 
 re: fclean all
 
