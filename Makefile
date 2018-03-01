@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/02/27 19:07:28 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/03/01 17:38:59 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,9 @@ CC = gcc
 SRC_PATH = src/
 OBJ_PATH = obj/
 LIB_PATH = libft/
-INC_PATH = ./includes \
-		   $(LIB_PATH)/includes
+INC_PATH = ./includes/ \
+		   $(LIB_PATH)/includes/
+H_FILES = $(addprefix $(INC_PATH), *.h)
 
 # Includes & libraries
 CPPFLAGS = $(addprefix -I ,$(INC_PATH))
@@ -88,7 +89,7 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 # **************************************************************************** #
 # RULES                                                                        #
 # **************************************************************************** #
-.PHONY: all, clean, fclean, re, norme
+.PHONY: all, clean, fclean, re, norme, normadev
 
 all: libft.a $(OBJ_PATH) $(NAME)
 
@@ -127,8 +128,12 @@ fclean:
 re: fclean all
 
 norme:
-	norminette $(SRC)
-	norminette $(addprefix $(INC_PATH), *.h)
+	@echo -e "$(TITLE)Norminette: $(NAME)$(END_TITLE)"
+	norminette $(SRC) $(H_FILES)
+
+normadev: 
+#	norminette **/*.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
+	sh ~/Projects/support/Normadev/normadev.sh $(SRC) $(H_FILES)
 
 # **************************************************************************** #
 # Personal notes :                                                             #
