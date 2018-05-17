@@ -5,25 +5,73 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/17 16:54:56 by ade-verd         ###   ########.fr        #
+#    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
+#    Updated: 2018/05/17 15:59:54 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Binary
-NAME = lem_in_and_visu
-NAME_LEM = lem-in
-NAME_VWR = visu-hex
+NAME = lem-in
+
+# Compiler
+CC = gcc
 
 # Directories
-SRC_PATH = src
-LEM_PATH = $(SRC_PATH)/$(NAME_LEM)
-VWR_PATH = $(SRC_PATH)/$(NAME_VWR)
-LIB_PATH = libftprintf/libft
-OBJ_PATH = obj
+PROJECT_PATH = ../../
+SRC_PATH = ./
+SRC_PATH_MUTUAL = ../mutual/
+OBJ_PATH = ../../obj/$(NAME)/
+PRINTF_PATH = ../../libftprintf
+LIBFT_PATH = $(PRINTF_PATH)/libft
+LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
+INC_PATH = includes \
+		   $(addsuffix /includes/, $(LIB_PATH))
+
+# Includes & libraries
+SDL2_CLAGS = $(shell sdl2-config --cflags)
+SDL2_LIBS = $(shell sdl2-config --libs)
+CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CLAGS) #`sdl2-config --cflags`
+LDFLAGS = $(addprefix -L ,$(LIB_PATH)) $(SDL2_LIBS) #`sdl2-config --libs`
+LDLIBS = -lft -lftprintf
+
+# Sources
+SRC_NAME = 	\
+			main.c\
+
+SRC_NAME_MUTUAL = \
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
+
+SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME)) \
+	  $(addprefix $(SRC_PATH_MUTUAL),$(SRC_NAME_MUTUAL))
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME)) \
+	  $(addprefix $(OBJ_PATH)$(SRC_PATH_MUTUAL),$(OBJ_NAME_MUTUAL))
+
+# Flags with OS Compatibiliy
+OS = $(shell uname)
+ifeq ($(OS), Darwin)
+	FLAGS_DEFAULT = -Werror -Wall -Wextra
+endif
+ifeq ($(OS), Linux)
+	FLAGS_DEFAULT = -Wno-unused-result
+endif
+ifdef FLAGS
+	ifeq ($(FLAGS), no)
+		CFLAGS := $(ADDFLAGS)
+	endif
+	ifeq ($(FLAGS), debug)
+		CFLAGS := $(FLAGS_DEFAULT) -ansi -pedantic -g $(ADDFLAGS)
+	endif
+else
+	CFLAGS := $(FLAGS_DEFAULT) $(ADDFLAGS)
+endif
 
 # MAKEFLAGS
 MAKE = make --no-print-directory -C #$(MAKEFLAGS)
+
+# Variables
+COUNTER=0
 
 # **************************************************************************** #
 # SPECIALS CHARS                                                               #
@@ -57,54 +105,78 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 # **************************************************************************** #
 # RULES                                                                        #
 # **************************************************************************** #
-.PHONY: all, clean, fclean, re, norme, norm, lem-in, visu-hex\
-		init_submodules, update_submodules
+.PHONY: all, clean, fclean, re, norme, norm, \
+		setup_SDL2, SDL2_Darwin, SDL2_Linux \
+		init_submodule update_submodule
 
 all: $(NAME)
 
-$(NAME): $(NAME_LEM) $(NAME_VWR)
+$(NAME): setup_SDL2 libftprintf.a $(OBJ_PATH) $(OBJ)
+	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
-$(NAME_LEM): force
-	@$(MAKE) $(LEM_PATH) $@
-	@if [ -h $@ ]; then rm -f $@; fi;
-	@ln -s $(LEM_PATH)/$@ .
+libftprintf.a:
+	@$(MAKE) $(PRINTF_PATH) $@
 
-$(NAME_VWR): force
-	@$(MAKE) $(VWR_PATH) $@
-	@if [ -h $@ ]; then rm -f $@; fi;
-	@ln -s $(VWR_PATH)/$@ .
+$(OBJ_PATH):
+	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
+	@echo -e "--$(LOG_CLEAR)Flags : $(CFLAGS)"
+	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)/$(SRC_PATH_MUTUAL)
 
-force:
-	@true
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c 
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@echo -e $(LINKING)
+	@$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
 
 clean:
-	@$(MAKE) $(LEM_PATH) clean
-	@$(MAKE) $(VWR_PATH) clean
+	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
+	@echo -e $(OBJECTS_DEL)
 	@rm -Rf $(OBJ_PATH)
+	@$(MAKE) $(PRINTF_PATH) clean_quiet
 
 fclean:
-	@$(MAKE) $(LEM_PATH) fclean
-	@$(MAKE) $(VWR_PATH) fclean
+	@echo -e "$(TITLE)fclean $(NAME)$(END_TITLE)"
+	@echo -e $(OBJECTS_DEL)
 	@rm -Rf $(OBJ_PATH)
-	@if [ -h $(NAME_LEM) ]; then rm -f $(NAME_LEM); fi;
-	@if [ -h $(NAME_VWR) ]; then rm -f $(NAME_VWR); fi;
+	@echo -e $(BIN_DEL)
+	@rm -f $(NAME)
+	@$(MAKE) $(PRINTF_PATH) fclean_quiet
 
 re: fclean all
 
+
+# Norm
 norme:
-	@echo -e "$(TITLE)Norminette: $(NAME_LEM)$(END_TITLE)"
-	@$(MAKE) $(LEM_PATH) norme
-	@echo -e "$(TITLE)Norminette: $(NAME_VWR)$(END_TITLE)"
-	@$(MAKE) $(VWR_PATH) norme
+	norminette $(SRC)
+	norminette $(addprefix $(INC_PATH), *.h)
 
 norm: 
 	norminette **/**.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
 
-init_submodules:
+# Submodules
+init_submodule:
 	git submodule update --init --recursive
 
-update_submodules:
+update_submodule:
 	git submodule update --recursive --remote
+
+# SDL2
+setup_SDL2:
+	@if [ $(OS) = Darwin ]; then make SDL2_Darwin; fi;
+	@if [ $(OS) = Linux ]; then make SDL2_Linux; fi;
+
+SDL2_Darwin:
+	@if !(brew ls --versions sdl2 > /dev/null); then \
+		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
+		brew update && brew install sdl2; \
+	fi;
+
+SDL2_Linux:
+	@if !(dpkg -s libsdl2-dev > /dev/null); then \
+		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
+		sudo apt-get install --yes libsdl2-dev; \
+	fi;
 
 # **************************************************************************** #
 # Personal notes :                                                             #
