@@ -6,3 +6,4 @@ a.out
 *.gch
 .DS_Store
 Thumbs.db
+*.dSYM
