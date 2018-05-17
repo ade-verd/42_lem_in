@@ -5,38 +5,41 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/03/01 17:38:59 by ade-verd         ###   ########.fr        #
+#    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
+#    Updated: 2018/05/17 15:09:33 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Binary
-NAME = ProjectName
+NAME = checker
 
 # Compiler
 CC = gcc
 
 # Directories
-SRC_PATH = src/
-OBJ_PATH = obj/
-LIB_PATH = libft/
-INC_PATH = ./includes/ \
-		   $(LIB_PATH)/includes/
-H_FILES = $(addprefix $(INC_PATH), *.h)
+PROJECT_PATH = ./
+SRC_PATH = src
+OBJ_PATH = obj
+PRINTF_PATH = libftprintf
+LIBFT_PATH = $(PRINTF_PATH)/libft
+LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
+INC_PATH = includes \
+		   $(addsuffix /includes/, $(LIB_PATH))
 
 # Includes & libraries
-CPPFLAGS = $(addprefix -I ,$(INC_PATH))
-LDFLAGS = -L $(LIB_PATH)
-LDLIBS = -lft
+SDL2_CLAGS = $(shell sdl2-config --cflags)
+SDL2_LIBS = $(shell sdl2-config --libs)
+CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CLAGS) #`sdl2-config --cflags`
+LDFLAGS = $(addprefix -L ,$(LIB_PATH)) $(SDL2_LIBS) #`sdl2-config --libs`
+LDLIBS = -lft -lftprintf
 
 # Sources
 SRC_NAME = \
-		   main.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
-SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 # Flags with OS Compatibiliy
 OS = $(shell uname)
@@ -56,6 +59,12 @@ ifdef FLAGS
 else
 	CFLAGS := $(FLAGS_DEFAULT) $(ADDFLAGS)
 endif
+
+# MAKEFLAGS
+MAKE = make --no-print-directory -C #$(MAKEFLAGS)
+
+# Variables
+COUNTER=0
 
 # **************************************************************************** #
 # SPECIALS CHARS                                                               #
@@ -89,32 +98,35 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 # **************************************************************************** #
 # RULES                                                                        #
 # **************************************************************************** #
-.PHONY: all, clean, fclean, re, norme, normadev
+.PHONY: all, clean, fclean, re, norme, norm, \
+		setup_SDL2, SDL2_Darwin, SDL2_Linux \
+		init_submodule update_submodule
 
-all: libft.a $(OBJ_PATH) $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): setup_SDL2 libftprintf.a $(OBJ_PATH) $(OBJ)
 	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
-	@echo -e $(ASSEMBLING)
+	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
-libft.a:
-	@make -C $(LIB_PATH)
+libftprintf.a:
+	@$(MAKE) $(PRINTF_PATH) $@
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
 	@echo -e "--$(LOG_CLEAR)Flags : $(CFLAGS)"
 	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)/$(SRC_PATH_MUTUAL)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c 
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	@echo -e $(LINKING)
+	@$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
 
 clean:
 	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
 	@echo -e $(OBJECTS_DEL)
 	@rm -Rf $(OBJ_PATH)
-#	@echo -e "$(TITLE)clean libft$(END_TITLE)"
-	@make -C $(LIB_PATH) clean_quiet
+	@$(MAKE) $(PRINTF_PATH) clean_quiet
 
 fclean:
 	@echo -e "$(TITLE)fclean $(NAME)$(END_TITLE)"
@@ -122,18 +134,42 @@ fclean:
 	@rm -Rf $(OBJ_PATH)
 	@echo -e $(BIN_DEL)
 	@rm -f $(NAME)
-#	@echo -e "$(TITLE)fclean libft$(END_TITLE)"
-	@make -C $(LIB_PATH) fclean_quiet
+	@$(MAKE) $(PRINTF_PATH) fclean_quiet
 
 re: fclean all
 
-norme:
-	@echo -e "$(TITLE)Norminette: $(NAME)$(END_TITLE)"
-	norminette $(SRC) $(H_FILES)
 
-normadev: 
-#	norminette **/*.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
-	sh ~/Projects/support/Normadev/normadev.sh $(SRC) $(H_FILES)
+# Norm
+norme:
+	norminette $(SRC)
+	norminette $(addprefix $(INC_PATH), *.h)
+
+norm: 
+	norminette **/**.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
+
+# Submodules
+init_submodule:
+	git submodule update --init --recursive
+
+update_submodule:
+	git submodule update --recursive --remote
+
+# SDL2
+setup_SDL2:
+	@if [ $(OS) = Darwin ]; then make SDL2_Darwin; fi;
+	@if [ $(OS) = Linux ]; then make SDL2_Linux; fi;
+
+SDL2_Darwin:
+	@if !(brew ls --versions sdl2 > /dev/null); then \
+		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
+		brew update && brew install sdl2; \
+	fi;
+
+SDL2_Linux:
+	@if !(dpkg -s libsdl2-dev > /dev/null); then \
+		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
+		sudo apt-get install --yes libsdl2-dev; \
+	fi;
 
 # **************************************************************************** #
 # Personal notes :                                                             #
