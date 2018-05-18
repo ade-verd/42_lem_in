@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/17 18:46:50 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/18 16:38:24 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <errno.h>
 # include "ft_printf.h"
 
-typedef struct	s_link;
+struct			s_link;
 
 typedef struct	s_room
 {
@@ -27,8 +27,8 @@ typedef struct	s_room
 	int				y;
 	int				ants;
 	struct s_link	*link;
-	struct s_room	next;
-	struct s_room	prev;
+	struct s_room	*next;
+	struct s_room	*prev;
 }				t_room;
 
 typedef struct	s_link
@@ -47,4 +47,12 @@ typedef struct	s_map
 	t_room		*end;
 }				t_map;
 
+
+void			ft_map_init(t_map **map);
+void			ft_add_room(t_map **map, char **room_info);
+void			ft_map_del(t_map **map);
+
+void			ft_error(t_map **map, char *precision, int errnum);
+void			ft_error_sdl(t_map **map, char *precision, char *precision2);
+int				none(void);
 #endif

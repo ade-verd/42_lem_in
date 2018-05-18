@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/17 16:24:07 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/18 12:26:20 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ_PATH = ../../obj/$(NAME)/
 PRINTF_PATH = ../../libftprintf
 LIBFT_PATH = $(PRINTF_PATH)/libft
 LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
-INC_PATH = includes \
+INC_PATH = ../../includes \
 		   $(addsuffix /includes/, $(LIB_PATH))
 
 # Includes & libraries

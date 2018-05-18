@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/17 15:59:54 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/18 12:38:42 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,11 @@ PROJECT_PATH = ../../
 SRC_PATH = ./
 SRC_PATH_MUTUAL = ../mutual/
 OBJ_PATH = ../../obj/$(NAME)/
-PRINTF_PATH = ../../libftprintf
-LIBFT_PATH = $(PRINTF_PATH)/libft
+PRINTF_PATH = ../../libftprintf/
+LIBFT_PATH = $(PRINTF_PATH)/libft/
 LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
-INC_PATH = includes \
-		   $(addsuffix /includes/, $(LIB_PATH))
+INC_PATH = ../../includes/ \
+		   $(addsuffix includes/, $(LIB_PATH))
 
 # Includes & libraries
 SDL2_CLAGS = $(shell sdl2-config --cflags)
@@ -37,15 +37,18 @@ LDLIBS = -lft -lftprintf
 # Sources
 SRC_NAME = 	\
 			main.c\
+			\
+			struct_manager.c\
 
 SRC_NAME_MUTUAL = \
+			errors_manager.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME)) \
+SRC = $(addprefix $(SRC_PATH),$(SRC_NAME)) \
 	  $(addprefix $(SRC_PATH_MUTUAL),$(SRC_NAME_MUTUAL))
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME)) \
+OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME)) \
 	  $(addprefix $(OBJ_PATH)$(SRC_PATH_MUTUAL),$(OBJ_NAME_MUTUAL))
 
 # Flags with OS Compatibiliy
