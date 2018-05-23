@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/18 16:38:24 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/23 19:37:33 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <errno.h>
+# include <limits.h>
 # include "ft_printf.h"
 
 struct			s_link;
@@ -43,12 +44,14 @@ typedef struct	s_map
 {
 	int			ants;
 	t_room		*head;
+	t_room		*curr;
 	t_room		*start;
 	t_room		*end;
 }				t_map;
 
 
 void			ft_map_init(t_map **map);
+void			ft_reader(t_map **map);
 void			ft_add_room(t_map **map, char **room_info);
 void			ft_map_del(t_map **map);
 
