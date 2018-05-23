@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/23 20:47:27 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/23 21:07:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_reader(t_map **map)
 		else if (ft_countwords(line, ' ') == 3 && ft_isroom(line, &loop))
 			ft_add_room(map, ft_strsplit(line, ' '));
 		ft_strdel(&line);
-		ft_printf("ret:%d\tloop:%d\n", ret, loop);
+		ft_printf("GNL à revoir\n");
 	}
 	if (line)
 		ft_strdel(&line);
