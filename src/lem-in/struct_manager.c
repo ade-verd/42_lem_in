@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:30:07 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/23 19:37:59 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/25 16:03:14 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	ft_create_room(t_map **map, t_room **current, char **room_info)
 	else
 	{
 		new->prev = NULL;
-		*current = new;
+		//*current = new;
+		(*map)->head = new;
 	}
 	ft_freetab_strsplit(room_info);
 }

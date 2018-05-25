@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/23 19:46:44 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/25 15:58:59 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	read_rooms(t_map *map)
 	t_room	*cpy;
 
 	cpy = map->head;
+	ft_printf("map->head->id: %s\n", map->head->id);
 	while (cpy)
 	{
 		ft_printf("id: %s\n", cpy->id);
