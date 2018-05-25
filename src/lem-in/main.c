@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/25 17:13:46 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/25 18:27:28 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ void	read_rooms(t_map *map)
 	t_room	*cpy;
 
 	cpy = map->head;
-	//if (map->head)
-	//	ft_printf("map->head->id: %s\n", map->head->id);
 	while (cpy)
 	{
+		if (cpy == map->start)
+			ft_putstr(F_GREEN);
+		if (cpy == map->end)
+			ft_putstr(F_RED);
 		ft_printf("id: %s\n", cpy->id);
 		ft_printf("x: %d\n", cpy->x);
 		ft_printf("y: %d\n", cpy->y);
 		if (cpy->next)
-			ft_printf("___\n");
+			ft_printf("%s___\n", F_NO);
 		cpy = cpy->next;
 	}
 }

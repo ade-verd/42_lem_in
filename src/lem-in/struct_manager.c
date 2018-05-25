@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:30:07 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/25 17:18:32 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/25 18:25:52 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_map_init(t_map **map)
 	(*map)->end = NULL;
 }
 
-void	ft_create_room(t_map **map, t_room **current, char **room_info)
+t_room	*ft_create_room(t_map **map, t_room **current, char **room_info)
 {
 	t_room	*new;
 
@@ -46,16 +46,17 @@ void	ft_create_room(t_map **map, t_room **current, char **room_info)
 		(*map)->head = new;
 	}
 	ft_freetab_strsplit(room_info);
+	return (new);
 }
 
-void	ft_add_room(t_map **map, char **room_info)
+t_room	*ft_add_room(t_map **map, char **room_info)
 {
 	t_room	*cpy;
 
 	cpy = (*map)->head;
 	while (cpy && cpy->next)
 		cpy = cpy->next;
-	ft_create_room(map, &cpy, room_info);
+	return (ft_create_room(map, &cpy, room_info));
 }
 
 void	ft_rooms_del(t_room **rooms)

@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/23 19:38:30 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/25 18:02:06 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC_NAME = 	\
 			\
 			struct_manager.c\
 			reader.c\
+			commands.c\
 
 SRC_NAME_MUTUAL = \
 			errors_manager.c\

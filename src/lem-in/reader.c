@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/25 17:13:18 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/25 18:01:18 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,21 @@ int		ft_isroom(char *str, int *loop)
 
 void	ft_reader(t_map **map)
 {
+	int		fd;
 	int		ret;
 	int		loop;
 	char	*line;
 
+	fd = 0;
 	loop = 1;
-	while (loop && (ret = get_next_line(0, &line)) > 0)
+	while (loop && (ret = get_next_line(fd, &line)) > 0)
 	{
 		if (line[0] == '#')
 		{
-			//if (ft_strcmp(line, "##start") == 0)
-				//do start
-			//else if (ft_strcmp(line, "##end") == 0)
-				//do end
+			if (ft_strcmp(line, "##start") == 0)
+				next_isstart(map, fd, &ret, &loop);
+			else if (ft_strcmp(line, "##end") == 0)
+				next_isend(map, fd, &ret, &loop);
 			//else if (...)
 				//comment
 		}
