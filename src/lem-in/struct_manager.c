@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:30:07 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/25 16:03:14 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/25 17:18:32 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	ft_create_room(t_map **map, t_room **current, char **room_info)
 	else
 	{
 		new->prev = NULL;
-		//*current = new;
 		(*map)->head = new;
 	}
 	ft_freetab_strsplit(room_info);
@@ -51,12 +50,12 @@ void	ft_create_room(t_map **map, t_room **current, char **room_info)
 
 void	ft_add_room(t_map **map, char **room_info)
 {
-	t_room	**cpy;
+	t_room	*cpy;
 
-	cpy = &(*map)->head;
-	while (*cpy && (*cpy)->next)
-		*cpy = (*cpy)->next;
-	ft_create_room(map, cpy, room_info);
+	cpy = (*map)->head;
+	while (cpy && cpy->next)
+		cpy = cpy->next;
+	ft_create_room(map, &cpy, room_info);
 }
 
 void	ft_rooms_del(t_room **rooms)
