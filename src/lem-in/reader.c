@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/25 18:01:18 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/25 18:40:53 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void	ft_reader(t_map **map)
 		if (line[0] == '#')
 		{
 			if (ft_strcmp(line, "##start") == 0)
-				next_isstart(map, fd, &ret, &loop);
+				command_start(map, fd, &ret, &loop);
 			else if (ft_strcmp(line, "##end") == 0)
-				next_isend(map, fd, &ret, &loop);
+				command_end(map, fd, &ret, &loop);
 			//else if (...)
 				//comment
 		}

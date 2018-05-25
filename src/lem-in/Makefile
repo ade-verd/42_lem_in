@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/25 18:02:06 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/25 18:37:48 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,10 @@ LDLIBS = -lft -lftprintf
 SRC_NAME = 	\
 			main.c\
 			\
-			struct_manager.c\
+			s_map.c\
+			s_rooms.c\
+			s_links.c\
+			\
 			reader.c\
 			commands.c\
 

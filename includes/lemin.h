@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/25 18:01:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/25 18:41:06 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,22 @@ typedef struct	s_map
 }				t_map;
 
 
-void			ft_map_init(t_map **map);
 void			ft_reader(t_map **map);
-t_room			*ft_add_room(t_map **map, char **room_info);
-void			ft_map_del(t_map **map);
 
-void			next_isstart(t_map **map, int fd, int *ret, int *loop);
-void			next_isend(t_map **map, int fd, int *ret, int *loop);
+/*
+** Map, rooms and links
+*/
+void			ft_map_init(t_map **map);
+void			ft_map_del(t_map **map);
+t_room			*ft_add_room(t_map **map, char **room_info);
+void			ft_rooms_del(t_room **rooms);
+
+/*
+** Commands
+*/
+void			command_start(t_map **map, int fd, int *ret, int *loop);
+void			command_end(t_map **map, int fd, int *ret, int *loop);
+
 void			ft_error(t_map **map, char *precision, int errnum);
 void			ft_error_sdl(t_map **map, char *precision, char *precision2);
 int				none(void);
