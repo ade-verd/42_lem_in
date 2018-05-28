@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/28 19:47:13 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/28 20:56:48 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	read_links(t_room *current)
 	link ? ft_printf("links:\t") : ft_printf("links:\t(null)");
 	while (link)
 	{
-
 		ft_printf("%s", link->to->id);
 		if (link->next)
 			ft_putstr(", ");	
@@ -58,7 +57,7 @@ int		main(void)
 
 	ft_map_init(&map);
 	ft_reader(&map);
-	read_rooms(map);
+	//read_rooms(map);
 	ft_map_del(&map);
 	return (EXIT_SUCCESS);
 }
