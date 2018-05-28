@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/25 18:41:06 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/28 19:29:48 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ typedef struct	s_room
 
 typedef struct	s_link
 {
-	t_room		*from;
-	t_room		*to;
-	t_room		*next;
-	t_room		*prev;
+	t_room			*from;
+	t_room			*to;
+	struct s_link	*next;
+	struct s_link	*prev;
 }				t_link;
 
 typedef struct	s_map
@@ -59,6 +59,9 @@ void			ft_map_init(t_map **map);
 void			ft_map_del(t_map **map);
 t_room			*ft_add_room(t_map **map, char **room_info);
 void			ft_rooms_del(t_room **rooms);
+t_room			*get_room_ptr(t_map **map, char *id);
+t_link			*ft_add_link(t_map **map, char **link_info);
+void			ft_links_del(t_link **links);
 
 /*
 ** Commands

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/25 18:40:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/28 18:32:30 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,17 @@ int		ft_isroom(char *str, int *loop)
 	return (*loop);
 }
 
+int		ft_islink(t_map **map, char *str, int *loop)
+{
+	char	**tab;
+
+	tab = ft_strsplit(str, '-');
+	if (!get_room_ptr(map, tab[0]) || !get_room_ptr(map, tab[1]))
+		*loop = 0;
+	ft_freetab_strsplit(tab);
+	return (*loop);
+}
+
 void	ft_reader(t_map **map)
 {
 	int		fd;
@@ -72,10 +83,12 @@ void	ft_reader(t_map **map)
 		}
 		else if (ft_countwords(line, ' ') == 3 && ft_isroom(line, &loop))
 			ft_add_room(map, ft_strsplit(line, ' '));
+		else if (ft_countwords(line, '-') == 2 && ft_islink(map, line, &loop))
+			ft_add_link(map, ft_strsplit(line, '-'));
+		else
+			loop = 0;
 		ft_strdel(&line);
 	}
-	if (line)
-		ft_strdel(&line);
-	if (ret < 0)
-		ft_error(map, "ft_reader: GNL Bad return", 0);
+	line ? ft_strdel(&line) : none();
+	ret < 0 ? ft_error(map, "ft_reader: GNL Bad return", 0) : none();
 }
