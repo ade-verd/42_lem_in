@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/29 15:39:33 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/29 18:32:06 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,22 @@ typedef struct	s_link
 	struct s_link	*prev;
 }				t_link;
 
+typedef struct	s_way
+{
+	int				par;
+	t_room			**rooms;
+	struct s_way	*next;
+	struct s_way	*prev;
+
+}				t_way;
+
 typedef struct	s_map
 {
 	int			ants;
 	t_room		*head;
-	t_room		*curr;
 	t_room		*start;
 	t_room		*end;
+	t_way		*ways;
 }				t_map;
 
 /*
