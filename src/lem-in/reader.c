@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/28 20:56:41 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/29 11:35:11 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	ft_reader(t_map **map)
 			loop = 0;
 		ft_strdel(&line);
 	}
-	read_rooms(*map);
 	line ? ft_strdel(&line) : none();
 	ret < 0 ? ft_error(map, "ft_reader: GNL Bad return", 0) : none();
 }
