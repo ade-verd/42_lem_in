@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/29 12:53:39 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/29 15:39:33 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_room
 	int				x;
 	int				y;
 	int				ants;
+	int				way;
 	struct s_link	*link;
 	struct s_room	*next;
 	struct s_room	*prev;
@@ -76,6 +77,7 @@ void			ft_links_del(t_link **links);
 void			ft_reader(t_map **map);
 int				ft_isroom(char *str, int *loop);
 int				ft_islink(t_map **map, char *str, int *loop);
+int				can_find_exit(t_map *map, t_room *current, int hit);
 
 /*
 ** Commands
