@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/28 19:29:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/29 12:53:39 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <errno.h>
 # include <limits.h>
 # include "ft_printf.h"
+
+# define REVERSE	-1
 
 struct			s_link;
 
@@ -49,19 +51,31 @@ typedef struct	s_map
 	t_room		*end;
 }				t_map;
 
-
-void			ft_reader(t_map **map);
-
 /*
-** Map, rooms and links
+** Map
 */
 void			ft_map_init(t_map **map);
 void			ft_map_del(t_map **map);
+
+/*
+** Rooms
+*/
 t_room			*ft_add_room(t_map **map, char **room_info);
 void			ft_rooms_del(t_room **rooms);
 t_room			*get_room_ptr(t_map **map, char *id);
-t_link			*ft_add_link(t_map **map, char **link_info);
+
+/*
+** Links
+*/
+void			ft_add_link(t_map **map, char **link_info);
 void			ft_links_del(t_link **links);
+
+/*
+** Reader
+*/
+void			ft_reader(t_map **map);
+int				ft_isroom(char *str, int *loop);
+int				ft_islink(t_map **map, char *str, int *loop);
 
 /*
 ** Commands
@@ -69,7 +83,11 @@ void			ft_links_del(t_link **links);
 void			command_start(t_map **map, int fd, int *ret, int *loop);
 void			command_end(t_map **map, int fd, int *ret, int *loop);
 
+/*
+** Errors
+*/
 void			ft_error(t_map **map, char *precision, int errnum);
 void			ft_error_sdl(t_map **map, char *precision, char *precision2);
 int				none(void);
+
 #endif
