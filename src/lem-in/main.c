@@ -6,11 +6,31 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/30 15:23:33 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/30 16:03:28 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+void	read_ways(t_map *map)
+{
+	t_way	*ways;
+	int		i;
+
+	ways = map->ways;
+	while (ways)
+	{
+		i = 0;
+		ft_printf("Par: %d\t", ways->par);
+		while (ways->rooms[i])
+		{
+			ft_printf(" %s", ways->rooms[i]->id);
+			i++;
+		}
+		ft_putchar('\n');
+		ways = ways->next;
+	}
+}
 
 void	read_links(t_room *current)
 {
@@ -60,8 +80,8 @@ int		main(int ac, char **av)
 	ft_read_fd(&map);
 	//read_rooms(map);
 	can_find_exit(map, map->head, 0);
+	read_ways(map);
 	ft_deal_options_quit(&map);
 	ft_map_del(&map);
-	while (1);
 	return (EXIT_SUCCESS);
 }
