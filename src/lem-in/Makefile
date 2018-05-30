@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/29 12:43:49 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/05/30 12:16:49 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC_NAME = 	\
 			s_map.c\
 			s_rooms.c\
 			s_links.c\
+			s_ways.c\
 			\
 			reader.c\
 			commands.c\

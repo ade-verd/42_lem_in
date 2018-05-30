@@ -6,29 +6,43 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/29 11:56:36 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/30 13:22:42 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	ft_reader(t_map **map)
+void	ft_read_args(t_map **map, int ac, char **av)
 {
-	int		fd;
+	char	**tab;
+	int 	i;
+
+	while (ac > 1)
+	{
+		ac--;
+		i = ft_countwords(av[ac], ' ');
+		tab = ft_strsplit(av[ac], ' ');
+		while (--i >= 0)
+			ft_check_args(map, tab[i]);
+		ft_freetab_strsplit(tab);
+	}
+}
+
+void	ft_read_fd(t_map **map)
+{
 	int		ret;
 	int		loop;
 	char	*line;
 
-	fd = 0;
 	loop = 1;
-	while (loop && (ret = get_next_line(fd, &line)) > 0)
+	while (loop && (ret = get_next_line((*map)->fd, &line)) > 0)
 	{
 		if (line[0] == '#')
 		{
 			if (ft_strcmp(line, "##start") == 0)
-				command_start(map, fd, &ret, &loop);
+				command_start(map, (*map)->fd, &ret, &loop);
 			else if (ft_strcmp(line, "##end") == 0)
-				command_end(map, fd, &ret, &loop);
+				command_end(map, (*map)->fd, &ret, &loop);
 			//else if (...)
 				//comment
 		}

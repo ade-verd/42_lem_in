@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/29 17:35:27 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/30 13:13:23 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,18 @@ void	read_rooms(t_map *map)
 	}
 }
 
-int		main(void)
+int		main(int ac, char **av)
 {
 	t_map	*map;
 
 	ft_map_init(&map);
-	ft_reader(&map);
+	if (ac > 1)
+		ft_read_args(&map, av);
+	ft_deal_options(&map);
+	ft_read_fd(&map);
 	//read_rooms(map);
 	can_find_exit(map, map->head, 0);
+	ft_deal_options_quit(&map);
 	ft_map_del(&map);
 	return (EXIT_SUCCESS);
 }
