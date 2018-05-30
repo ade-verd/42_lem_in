@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:35:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/18 16:38:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/30 14:06:29 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	ft_error(t_map **map, char *precision, int errnum)
 	if (precision)
 	{
 		ft_putstr_fd(precision, 2);
-		ft_putstr_fd(": ", 2);
 		if (errnum > 0)
-			ft_dprintf(2, "%s\n", strerror(errnum));
+		{
+			ft_putstr_fd(": ", 2);
+			ft_dprintf(2, "%s", strerror(errnum));
+		}
+		ft_putchar('\n');
 	}
 	else
 		ft_putstr_fd("Error\n", 2);

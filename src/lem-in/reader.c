@@ -6,13 +6,20 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/30 13:22:42 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/30 14:03:47 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	ft_read_args(t_map **map, int ac, char **av)
+static void	ft_check_args(t_map **map, char *str)
+{
+	if (str[0] == '-' && ft_strchr(str, 'f'))
+		(*map)->option_f = 1;
+	ft_strstr(str, ".txt") ? (*map)->path = ft_strdup(str) : (*map)->path;
+}
+
+void		ft_read_args(t_map **map, int ac, char **av)
 {
 	char	**tab;
 	int 	i;
@@ -28,7 +35,7 @@ void	ft_read_args(t_map **map, int ac, char **av)
 	}
 }
 
-void	ft_read_fd(t_map **map)
+void		ft_read_fd(t_map **map)
 {
 	int		ret;
 	int		loop;

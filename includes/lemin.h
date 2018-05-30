@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/30 13:13:49 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/30 14:02:08 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void			ft_fill_lastway(t_map **map, t_room *current, int index);
 /*
 ** Reader
 */
+void			ft_read_args(t_map **map, int ac, char **av);
 void			ft_read_fd(t_map **map);
 int				ft_isroom(char *str, int *loop);
 int				ft_islink(t_map **map, char *str, int *loop);

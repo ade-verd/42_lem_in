@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/30 13:13:23 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/30 14:02:24 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		main(int ac, char **av)
 
 	ft_map_init(&map);
 	if (ac > 1)
-		ft_read_args(&map, av);
+		ft_read_args(&map, ac, av);
 	ft_deal_options(&map);
 	ft_read_fd(&map);
 	//read_rooms(map);
