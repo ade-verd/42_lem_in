@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/30 14:02:24 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/30 15:23:33 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ int		main(int ac, char **av)
 	can_find_exit(map, map->head, 0);
 	ft_deal_options_quit(&map);
 	ft_map_del(&map);
+	while (1);
 	return (EXIT_SUCCESS);
 }
