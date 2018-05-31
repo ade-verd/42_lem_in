@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/30 16:50:59 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/31 18:59:57 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	read_ways(t_map *map)
 	int		i;
 
 	ways = map->ways;
-	while (ways)
+	while (ways && ways->rooms[0])
 	{
 		i = 0;
 		ft_printf("Par: %d\t", ways->par);
@@ -81,6 +81,7 @@ int		main(int ac, char **av)
 	ft_read_fd(&map);
 	//read_rooms(map);
 	can_find_exit(map, map->head, 0);
+	ft_printf("%s___\n", F_NO);
 	read_ways(map);
 	ft_deal_options_quit(&map);
 	ft_map_del(&map);

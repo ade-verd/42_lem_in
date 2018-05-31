@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/30 14:02:08 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/05/31 17:38:03 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct	s_way
 typedef struct	s_map
 {
 	int			ants;
+	int			rooms;
 	t_room		*head;
 	t_room		*start;
 	t_room		*end;
@@ -92,7 +93,7 @@ void			ft_links_del(t_link **links);
 /*
 ** Ways
 */
-t_way			*ft_add_way(t_map **map, int hits);
+t_way			*ft_add_way(t_map **map);
 void			ft_ways_del(t_way **ways);
 void			ft_fill_lastway(t_map **map, t_room *current, int index);
 
