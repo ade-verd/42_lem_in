@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/31 18:59:57 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/19 19:27:33 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,42 @@ void	read_ways(t_map *map)
 	int		i;
 
 	ways = map->ways;
-	while (ways && ways->rooms[0])
+	while (ways && ways->rooms)
 	{
 		i = 0;
-		ft_printf("Par: %d\t", ways->par);
+		ways->rooms[i] ? ft_printf("Par: %d\t", ways->par) : none();
 		while (ways->rooms[i])
 		{
 			ft_putstr(ways->rooms[i]->id);
 			ways->rooms[i + 1] ? ft_putchar('-') : none();
 			i++;
 		}
-		ft_putchar('\n');
+		ways->rooms[0] ? ft_putchar('\n') : none();
 		ways = ways->next;
 	}
+}
+
+void	read_last_way(t_map *map)
+{
+	t_way	*ways;
+	int		i;
+
+	ways = map->ways;
+	while (ways && ways->next)
+		ways = ways->next;
+	if (!ways->rooms)
+		return ;
+	i = 0;
+	while (i < map->rooms)
+	{
+		if (!ways->rooms[i])
+			ft_putstr(" ");
+		else
+			ft_putstr(ways->rooms[i]->id);
+		ways->rooms[i + 1] ? ft_putchar('-') : none();
+		i++;
+	}
+	ft_putchar('\n');
 }
 
 void	read_links(t_room *current)
@@ -80,7 +103,7 @@ int		main(int ac, char **av)
 	ft_deal_options(&map);
 	ft_read_fd(&map);
 	//read_rooms(map);
-	can_find_exit(map, map->head, 0);
+	find_issues(map, map->head, 0);
 	ft_printf("%s___\n", F_NO);
 	read_ways(map);
 	ft_deal_options_quit(&map);
