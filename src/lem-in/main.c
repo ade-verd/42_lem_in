@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 11:46:58 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/20 12:22:08 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ int		main(int ac, char **av)
 		ft_read_args(&map, ac, av);
 	ft_deal_options(&map);
 	ft_read_fd(&map);
-	//read_rooms(map);
 	find_issues(map, map->head, 0);
+	ft_printf("%d issues\n", ft_count_issues(map));
 	ft_printf("%s___\n", F_NO);
 	read_ways(map);
 	ft_deal_options_quit(&map);
