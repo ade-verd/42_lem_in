@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 14:37:17 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/20 17:35:11 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	read_ways(t_map *map)
 	while (ways && ways->rooms)
 	{
 		i = 0;
+		ways->select == 0 ? ft_putstr(F_BLACK) : none();
 		ways->rooms[i] ? ft_printf("Par: %d\t", ways->par) : none();
 		while (ways->rooms[i])
 		{
@@ -28,7 +29,7 @@ void	read_ways(t_map *map)
 			ways->rooms[i + 1] ? ft_putchar('-') : none();
 			i++;
 		}
-		ways->rooms[0] ? ft_putchar('\n') : none();
+		ways->rooms[0] ? ft_printf("%s\n", F_NO) : ft_putstr(F_NO);
 		ways = ways->next;
 	}
 }
@@ -102,6 +103,7 @@ int		main(int ac, char **av)
 	find_issues(map, map->head, 0);
 	!ft_count_issues(map) ? ft_error(&map, "No issue", 0) : none();
 	ft_sort_issues(map);
+	ft_select_issues(map);
 	read_ways(map);
 	ft_deal_options_quit(&map);
 	ft_map_del(&map);

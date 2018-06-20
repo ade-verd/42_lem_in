@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 14:37:06 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/20 17:35:33 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct	s_link
 typedef struct	s_way
 {
 	int				par;
+	int				select;
 	t_room			**rooms;
 	struct s_way	*next;
 	struct s_way	*prev;
@@ -114,6 +115,7 @@ int				ft_islink(t_map **map, char *str, int *loop);
 int				ft_count_issues(t_map *map);
 int				find_issues(t_map *map, t_room *current, int hit);
 void			ft_sort_issues(t_map *map);
+void			ft_select_issues(t_map *map);
 
 /*
 ** Commands
