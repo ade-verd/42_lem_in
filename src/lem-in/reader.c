@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 19:53:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:19:27 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void		ft_read_fd(t_map **map)
 	loop = 1;
 	while (loop && (ret = get_next_line((*map)->fd, &line)) > 0)
 	{
+		ft_printf("line: |%s|\n", line);
 		if (line[0] == '#')
 			starts_with_hashtag(map, line, &ret, &loop);
 		else if (ft_countwords(line, ' ') == 3 && ft_isroom(line, &loop))
