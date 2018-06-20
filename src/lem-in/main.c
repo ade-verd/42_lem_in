@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 12:22:08 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/20 14:37:17 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int		main(int ac, char **av)
 	ft_deal_options(&map);
 	ft_read_fd(&map);
 	find_issues(map, map->head, 0);
-	ft_printf("%d issues\n", ft_count_issues(map));
-	ft_printf("%s___\n", F_NO);
+	!ft_count_issues(map) ? ft_error(&map, "No issue", 0) : none();
+	ft_sort_issues(map);
 	read_ways(map);
 	ft_deal_options_quit(&map);
 	ft_map_del(&map);

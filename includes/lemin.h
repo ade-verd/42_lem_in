@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 12:20:26 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/20 14:37:06 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void			ft_links_del(t_link **links);
 t_way			*ft_add_way(t_map **map);
 void			ft_ways_del(t_way **ways);
 void			ft_fill_lastway(t_map **map, t_room *current, int index);
+void			ft_swap_ways(t_way *a, t_way *b);
 void			read_ways(t_map *map);
 void			read_last_way(t_map *map);
 
@@ -112,6 +113,7 @@ int				ft_islink(t_map **map, char *str, int *loop);
 */
 int				ft_count_issues(t_map *map);
 int				find_issues(t_map *map, t_room *current, int hit);
+void			ft_sort_issues(t_map *map);
 
 /*
 ** Commands
