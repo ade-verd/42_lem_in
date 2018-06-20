@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/05/30 14:03:47 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/20 19:53:28 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ void		ft_read_args(t_map **map, int ac, char **av)
 	}
 }
 
+void		starts_with_hashtag(t_map **map, char *line, int *ret, int *loop)
+{
+	if (ft_strcmp(line, "##start") == 0)
+		command_start(map, (*map)->fd, ret, loop);
+	else if (ft_strcmp(line, "##end") == 0)
+		command_end(map, (*map)->fd, ret, loop);
+	//else if (...)
+		//comment
+}
+
 void		ft_read_fd(t_map **map)
 {
 	int		ret;
@@ -45,18 +55,13 @@ void		ft_read_fd(t_map **map)
 	while (loop && (ret = get_next_line((*map)->fd, &line)) > 0)
 	{
 		if (line[0] == '#')
-		{
-			if (ft_strcmp(line, "##start") == 0)
-				command_start(map, (*map)->fd, &ret, &loop);
-			else if (ft_strcmp(line, "##end") == 0)
-				command_end(map, (*map)->fd, &ret, &loop);
-			//else if (...)
-				//comment
-		}
+			starts_with_hashtag(map, line, &ret, &loop);
 		else if (ft_countwords(line, ' ') == 3 && ft_isroom(line, &loop))
 			ft_add_room(map, ft_strsplit(line, ' '));
 		else if (ft_countwords(line, '-') == 2 && ft_islink(map, line, &loop))
 			ft_add_link(map, ft_strsplit(line, '-'));
+		else if (ft_countwords(line, ' ') == 1 && ft_isant(line, &loop))
+			(*map)->ants += ft_atointmax(line);
 		else
 			loop = 0;
 		ft_strdel(&line);

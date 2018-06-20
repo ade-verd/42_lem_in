@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 17:35:33 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/20 19:51:50 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void			ft_read_args(t_map **map, int ac, char **av);
 void			ft_read_fd(t_map **map);
 int				ft_isroom(char *str, int *loop);
 int				ft_islink(t_map **map, char *str, int *loop);
+int				ft_isant(char *str, int *loop);
 
 /*
 ** Issues
