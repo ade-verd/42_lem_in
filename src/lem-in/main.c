@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/19 19:27:33 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/20 11:46:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,9 @@ void	read_last_way(t_map *map)
 	if (!ways->rooms)
 		return ;
 	i = 0;
-	while (i < map->rooms)
+	while (ways->rooms[i])
 	{
-		if (!ways->rooms[i])
-			ft_putstr(" ");
-		else
-			ft_putstr(ways->rooms[i]->id);
+		ft_putstr(ways->rooms[i]->id);
 		ways->rooms[i + 1] ? ft_putchar('-') : none();
 		i++;
 	}
