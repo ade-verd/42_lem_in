@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 19:51:50 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/21 11:24:01 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "ft_printf.h"
 
 # define REVERSE	-1
+# define CMD_START	1
+# define CMD_END	2
 
 struct			s_link;
 
@@ -61,6 +63,7 @@ typedef struct	s_map
 	t_room		*start;
 	t_room		*end;
 	t_way		*ways;
+	int			command;
 	int			option_f;
 	int			fd;
 	char		*path;
@@ -117,12 +120,6 @@ int				ft_count_issues(t_map *map);
 int				find_issues(t_map *map, t_room *current, int hit);
 void			ft_sort_issues(t_map *map);
 void			ft_select_issues(t_map *map);
-
-/*
-** Commands
-*/
-void			command_start(t_map **map, int fd, int *ret, int *loop);
-void			command_end(t_map **map, int fd, int *ret, int *loop);
 
 /*
 ** Errors

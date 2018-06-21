@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 20:19:27 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/20 20:19:27t by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ void		ft_read_args(t_map **map, int ac, char **av)
 	}
 }
 
-void		starts_with_hashtag(t_map **map, char *line, int *ret, int *loop)
+void		starts_with_hashtag(t_map **map, char *line)
 {
 	if (ft_strcmp(line, "##start") == 0)
-		command_start(map, (*map)->fd, ret, loop);
+		(*map)->command = CMD_START;
 	else if (ft_strcmp(line, "##end") == 0)
-		command_end(map, (*map)->fd, ret, loop);
+		(*map)->command = CMD_END;
 	//else if (...)
 		//comment
 }
@@ -56,7 +56,7 @@ void		ft_read_fd(t_map **map)
 	{
 		ft_printf("line: |%s|\n", line);
 		if (line[0] == '#')
-			starts_with_hashtag(map, line, &ret, &loop);
+			starts_with_hashtag(map, line);
 		else if (ft_countwords(line, ' ') == 3 && ft_isroom(line, &loop))
 			ft_add_room(map, ft_strsplit(line, ' '));
 		else if (ft_countwords(line, '-') == 2 && ft_islink(map, line, &loop))
