@@ -54,7 +54,6 @@ void		ft_read_fd(t_map **map)
 	loop = 1;
 	while (loop && (ret = get_next_line((*map)->fd, &line)) > 0)
 	{
-		ft_printf("line: |%s|\n", line);
 		if (line[0] == '#')
 			starts_with_hashtag(map, line);
 		else if (ft_countwords(line, ' ') == 3 && ft_isroom(line, &loop))
