@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/20 17:35:57 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/06/22 15:15:16 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,9 @@ SRC_NAME = 	\
 			validity.c\
 			issues.c\
 			select.c\
+			\
+			launch.c\
+			move.c\
 
 SRC_NAME_MUTUAL = \
 			errors_manager.c\

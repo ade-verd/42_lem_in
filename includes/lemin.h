@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/21 13:01:00 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/22 17:56:32 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct	s_room
 	char			*id;
 	int				x;
 	int				y;
-	int				ants;
+	int				ant_id;
 	int				way;
 	struct s_link	*link;
 	struct s_room	*next;
@@ -58,6 +58,10 @@ typedef struct	s_way
 typedef struct	s_map
 {
 	int			ants;
+	int			lap;
+	int			lapsmove;
+	int			nb_start;
+	int			nb_end;
 	int			rooms;
 	t_room		*head;
 	t_room		*start;
@@ -126,6 +130,13 @@ int				ft_count_issues(t_map *map);
 int				find_issues(t_map *map, t_room *current, int hit);
 void			ft_sort_issues(t_map *map);
 void			ft_select_issues(t_map *map);
+
+/*
+** solve
+*/
+void			solve(t_map *map);
+void			move_ant(t_map *map, t_room *from, t_room *to);
+void			move_all(t_map *map);
 
 /*
 ** Errors
