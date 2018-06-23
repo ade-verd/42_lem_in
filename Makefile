@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/17 16:54:56 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/06/23 16:10:42 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ NAME_VWR = visu-hex
 
 # Directories
 SRC_PATH = src
-LEM_PATH = $(SRC_PATH)/$(NAME_LEM)
-VWR_PATH = $(SRC_PATH)/$(NAME_VWR)
+LEM_PATH = $(SRC_PATH)/lemin
+VWR_PATH = $(SRC_PATH)/visuhex
 LIB_PATH = libftprintf/libft
 OBJ_PATH = obj
 
