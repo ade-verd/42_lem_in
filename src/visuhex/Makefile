@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/05/18 12:26:20 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/06/23 18:42:27 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ CC = gcc
 # Directories
 PROJECT_PATH = ../../
 SRC_PATH = ./
+SRC_PATH_NAME = $(notdir $(CURDIR))
 SRC_PATH_MUTUAL = ../mutual/
-OBJ_PATH = ../../obj/$(NAME)/
+OBJ_PATH = ../../obj/$(SRC_PATH_NAME)
 PRINTF_PATH = ../../libftprintf
 LIBFT_PATH = $(PRINTF_PATH)/libft
 LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
