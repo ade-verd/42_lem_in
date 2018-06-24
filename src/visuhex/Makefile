@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
+#    By: aurelien <aurelien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/23 18:42:27 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/06/24 16:43:06 by aurelien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,9 +44,9 @@ SRC_NAME_MUTUAL = \
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME)) \
+SRC = $(addprefix $(SRC_PATH),$(SRC_NAME)) \
 	  $(addprefix $(SRC_PATH_MUTUAL),$(SRC_NAME_MUTUAL))
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME)) \
+OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME)) \
 	  $(addprefix $(OBJ_PATH)$(SRC_PATH_MUTUAL),$(OBJ_NAME_MUTUAL))
 
 # Flags with OS Compatibiliy
