@@ -35,7 +35,7 @@ void		ft_read_args(t_map **map, int ac, char **av)
 	}
 }
 
-void		starts_with_hashtag(t_map **map, char *line)
+void		starts_with_hashtag(t_map **map, char *line, int *loop)
 {
 	if (ft_strcmp(line, "##start") == 0)
 		(*map)->command = CMD_START;
@@ -43,6 +43,8 @@ void		starts_with_hashtag(t_map **map, char *line)
 		(*map)->command = CMD_END;
 	//else if (...)
 		//comment
+	if ((*map)->command && (*map)->ants <= 0)
+		*loop = 0;
 }
 
 void		ft_read_fd(t_map **map)
@@ -55,7 +57,7 @@ void		ft_read_fd(t_map **map)
 	while (loop && (ret = get_next_line((*map)->fd, &line)) > 0)
 	{
 		if (line[0] == '#')
-			starts_with_hashtag(map, line);
+			starts_with_hashtag(map, line, &loop);
 		else if (ft_countwords(line, ' ') == 3 && ft_isroom(line, &loop))
 			ft_add_room(map, ft_strsplit(line, ' '));
 		else if (ft_countwords(line, '-') == 2 && ft_islink(map, line, &loop))
@@ -65,7 +67,7 @@ void		ft_read_fd(t_map **map)
 		else
 			loop = 0;
 		if (loop)
-			ft_printf("%s\n", line);
+			ft_add_line(*map, ft_strdup(line));
 		ft_strdel(&line);
 	}
 	line ? ft_strdel(&line) : none();

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 18:36:13 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/25 12:40:44 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/25 13:25:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_room	*ft_add_room(t_map **map, char **room_info)
 	t_room	*cpy;
 	t_room	*new;
 
-	if ((*map)->ant <= 0)
+	if ((*map)->ants <= 0)
 		ft_error(map, "No ant", 0);
 	cpy = (*map)->head;
 	while (cpy && cpy->next)

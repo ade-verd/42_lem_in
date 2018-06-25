@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/25 12:13:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/25 18:24:16 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,7 @@ int		main(int ac, char **av)
 	ft_check_validity(map);
 	ft_sort_issues(map);
 	ft_select_issues(map);
-	//read_ways(map);
-	ft_putchar('\n');
+	ft_read_lines(map);
 	solve(map);
 	ft_deal_options_quit(&map);
 	ft_map_del(&map);

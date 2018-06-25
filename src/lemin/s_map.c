@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:30:07 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/22 17:57:03 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/25 17:54:15 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_map_init(t_map **map)
 	(*map)->ways = NULL;
 	(*map)->start = NULL;
 	(*map)->end = NULL;
+	(*map)->lines = NULL;
 	(*map)->command = 0;
 	(*map)->option_f = 0;
 	(*map)->fd = 0;
@@ -38,6 +39,7 @@ void	ft_map_del(t_map **map)
 		ft_strdel(&(*map)->path);
 	ft_ways_del(&(*map)->ways);
 	ft_rooms_del(&(*map)->head);
+	ft_lines_del((*map)->lines);
 	if (*map)
 		ft_memdel((void**)map);
 }

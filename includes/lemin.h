@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/22 17:56:32 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/25 17:38:06 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ typedef struct	s_way
 
 }				t_way;
 
+typedef struct	s_line
+{
+	char			*line;
+	struct s_line	*next;
+}				t_line;
+
 typedef struct	s_map
 {
 	int			ants;
@@ -67,6 +73,7 @@ typedef struct	s_map
 	t_room		*start;
 	t_room		*end;
 	t_way		*ways;
+	t_line		*lines;
 	int			command;
 	int			option_f;
 	int			fd;
@@ -107,6 +114,13 @@ void			ft_fill_lastway(t_map **map, t_room *current, int index);
 void			ft_swap_ways(t_way *a, t_way *b);
 void			read_ways(t_map *map);
 void			read_last_way(t_map *map);
+
+/*
+** Lines
+*/
+t_line			*ft_add_line(t_map *map, char *line);
+void			ft_lines_del(t_line	*lines);
+void			ft_read_lines(t_map *map);
 
 /*
 ** Reader

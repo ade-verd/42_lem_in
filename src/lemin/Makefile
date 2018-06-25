@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aurelien <aurelien@student.42.fr>          +#+  +:+       +#+         #
+#    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/24 16:43:25 by aurelien         ###   ########.fr        #
+#    Updated: 2018/06/25 18:20:24 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC_NAME = 	\
 			s_rooms.c\
 			s_links.c\
 			s_ways.c\
+			s_lines.c\
 			\
 			options.c\
 			reader.c\
