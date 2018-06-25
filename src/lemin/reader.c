@@ -64,6 +64,8 @@ void		ft_read_fd(t_map **map)
 			(*map)->ants += ft_atointmax(line);
 		else
 			loop = 0;
+		if (loop)
+			ft_printf("%s\n", line);
 		ft_strdel(&line);
 	}
 	line ? ft_strdel(&line) : none();
