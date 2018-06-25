@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 11:55:32 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/25 12:30:32 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/25 19:56:13 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int			ft_islink(t_map **map, char *str, int *loop)
 	char	**tab;
 
 	tab = ft_strsplit(str, '-');
+	if ((*map)->command)
+		*loop = 0;
 	if (ft_strcmp(tab[0], tab[1]) == 0)
 		*loop = 0;
 	if (!get_room_ptr(map, tab[0]) || !get_room_ptr(map, tab[1]))
