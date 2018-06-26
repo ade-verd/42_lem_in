@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/25 17:38:06 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/26 18:31:00 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ t_way			*ft_add_way(t_map **map);
 void			ft_ways_del(t_way **ways);
 void			ft_fill_lastway(t_map **map, t_room *current, int index);
 void			ft_swap_ways(t_way *a, t_way *b);
-void			read_ways(t_map *map);
-void			read_last_way(t_map *map);
 
 /*
 ** Lines
@@ -151,6 +149,14 @@ void			ft_select_issues(t_map *map);
 void			solve(t_map *map);
 void			move_ant(t_map *map, t_room *from, t_room *to);
 void			move_all(t_map *map);
+
+/*
+** Display
+*/
+void			ft_read_rooms(t_map *map);
+void			ft_read_links(t_room *current);
+void			ft_read_last_way(t_map *map);
+void			ft_read_ways(t_map *map);
 
 /*
 ** Errors

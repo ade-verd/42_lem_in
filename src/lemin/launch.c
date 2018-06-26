@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 14:28:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/23 18:16:24 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/26 15:43:50 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void		launch_ants(t_map *map)
 	{
 		if (ways->rooms[0] && ways->select)
 		{
+			ft_printf("room:%s\n", ways->rooms[0]->id);
 			if (ways->rooms[1] && ways->rooms[1]->ant_id == 0)
 			{
 				ways->rooms[0]->ant_id = map->ants - map->nb_start + 1;
@@ -29,6 +30,7 @@ void		launch_ants(t_map *map)
 			}
 		}
 		ways = ways->next;
+		sleep (1);
 	}
 }
 
@@ -37,6 +39,7 @@ void		solve(t_map *map)
 	map->nb_start = map->ants;
 	while (map->nb_end < map->ants)
 	{
+		sleep (1);
 		map->lap++;
 		map->lapsmove = 0;
 		move_all(map);

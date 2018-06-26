@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/25 18:20:24 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/06/26 18:30:02 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC_NAME = 	\
 			validity.c\
 			issues.c\
 			select.c\
+			display.c\
 			\
 			launch.c\
 			move.c\
