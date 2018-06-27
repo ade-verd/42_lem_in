@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/26 18:30:02 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/06/27 21:34:30 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC_PATH = ./
 SRC_PATH_NAME = $(notdir $(CURDIR))
 SRC_PATH_MUTUAL = ../mutual/
 OBJ_PATH = ../../obj/$(SRC_PATH_NAME)/
+PREREQUISITES_PATH = $(PROJECT_PATH)scripts/
 PRINTF_PATH = ../../libftprintf/
 LIBFT_PATH = $(PRINTF_PATH)/libft/
 LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
@@ -34,6 +35,13 @@ SDL2_LIBS = $(shell sdl2-config --libs)
 CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CLAGS) #`sdl2-config --cflags`
 LDFLAGS = $(addprefix -L ,$(LIB_PATH)) $(SDL2_LIBS) #`sdl2-config --libs`
 LDLIBS = -lft -lftprintf
+
+# Prerequisites
+PREREQUISITES_NAME = 	\
+						setup_sdl2.sh\
+						setup_graphviz.sh\
+
+PREREQUISITES_NAME = $(addprefix $(PREREQUISITES_PATH), $(PREREQUISITES_NAME))
 
 # Sources
 SRC_NAME = 	\
@@ -130,9 +138,15 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 
 all: $(NAME)
 
-$(NAME): setup_SDL2 libftprintf.a $(OBJ_PATH) $(OBJ)
+$(NAME): prerequisites $(OBJ_PATH) $(OBJ)
 	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
+
+prerequisites:
+	$(shell sh $(PREREQUISITES_PATH)/setup_sdl2.sh)
+#	@make libftprintf.a
+
+#	$(foreach FILE, $(PREREQUISITES), $(shell sh $(PREREQUISITES)))
 
 libftprintf.a:
 	@$(MAKE) $(PRINTF_PATH) $@
@@ -164,7 +178,6 @@ fclean:
 
 re: fclean all
 
-
 # Norm
 norme:
 	norminette $(SRC)
@@ -180,22 +193,6 @@ init_submodule:
 update_submodule:
 	git submodule update --recursive --remote
 
-# SDL2
-setup_SDL2:
-	@if [ $(OS) = Darwin ]; then make SDL2_Darwin; fi;
-	@if [ $(OS) = Linux ]; then make SDL2_Linux; fi;
-
-SDL2_Darwin:
-	@if !(brew ls --versions sdl2 > /dev/null); then \
-		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
-		brew update && brew install sdl2; \
-	fi;
-
-SDL2_Linux:
-	@if !(dpkg -s libsdl2-dev > /dev/null); then \
-		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
-		sudo apt-get install --yes libsdl2-dev; \
-	fi;
 
 # **************************************************************************** #
 # Personal notes :                                                             #

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 12:02:59 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/27 11:38:01 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/27 15:29:24 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int			find_issues(t_map *map, t_room *current, int hit)
 	if (current == map->end)
 	{
 		ft_fill_lastway(&map, 0, hit + 1);
+		//ft_read_last_way(map);
 		ft_add_way(&map);
 		return (hit);
 	}
