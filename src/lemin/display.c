@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 18:29:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/26 18:29:35 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/27 11:54:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,5 @@ void	ft_read_rooms(t_map *map)
 			ft_printf("%s___\n", F_NO);
 		cpy = cpy->next;
 	}
+	ft_putstr(F_NO);
 }
