@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/27 21:34:30 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/06/28 19:16:18 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,10 +143,11 @@ $(NAME): prerequisites $(OBJ_PATH) $(OBJ)
 	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
 prerequisites:
-	$(shell sh $(PREREQUISITES_PATH)/setup_sdl2.sh)
-#	@make libftprintf.a
+	@echo $(PREREQUISITES)
+	$(foreach FILE, $(PREREQUISITES), $(PREREQUISITES))
+	@make libftprintf.a
 
-#	$(foreach FILE, $(PREREQUISITES), $(shell sh $(PREREQUISITES)))
+#	$(shell bash $(PREREQUISITES_PATH)/setup_sdl2.sh)
 
 libftprintf.a:
 	@$(MAKE) $(PRINTF_PATH) $@
