@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/28 19:16:18 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/06/28 20:28:44 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC_PATH = ./
 SRC_PATH_NAME = $(notdir $(CURDIR))
 SRC_PATH_MUTUAL = ../mutual/
 OBJ_PATH = ../../obj/$(SRC_PATH_NAME)/
-PREREQUISITES_PATH = $(PROJECT_PATH)scripts/
+SCRIPTS_PATH = $(PROJECT_PATH)scripts/
 PRINTF_PATH = ../../libftprintf/
 LIBFT_PATH = $(PRINTF_PATH)/libft/
 LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
@@ -41,7 +41,7 @@ PREREQUISITES_NAME = 	\
 						setup_sdl2.sh\
 						setup_graphviz.sh\
 
-PREREQUISITES_NAME = $(addprefix $(PREREQUISITES_PATH), $(PREREQUISITES_NAME))
+PREREQUISITES = $(addprefix $(SCRIPTS_PATH), $(PREREQUISITES_NAME))
 
 # Sources
 SRC_NAME = 	\
@@ -143,11 +143,8 @@ $(NAME): prerequisites $(OBJ_PATH) $(OBJ)
 	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
 prerequisites:
-	@echo $(PREREQUISITES)
-	$(foreach FILE, $(PREREQUISITES), $(PREREQUISITES))
+#	@$(foreach FILE, $(PREREQUISITES_NAME), echo $(SCRIPTS_PATH)$(PREREQUISITES_NAME))
 	@make libftprintf.a
-
-#	$(shell bash $(PREREQUISITES_PATH)/setup_sdl2.sh)
 
 libftprintf.a:
 	@$(MAKE) $(PRINTF_PATH) $@
