@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aurelien <aurelien@student.42.fr>          +#+  +:+       +#+         #
+#    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/24 16:43:06 by aurelien         ###   ########.fr        #
+#    Updated: 2018/06/29 18:06:01 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,13 @@ PROJECT_PATH = ../../
 SRC_PATH = ./
 SRC_PATH_NAME = $(notdir $(CURDIR))
 SRC_PATH_MUTUAL = ../mutual/
-OBJ_PATH = ../../obj/$(SRC_PATH_NAME)
-PRINTF_PATH = ../../libftprintf
-LIBFT_PATH = $(PRINTF_PATH)/libft
+OBJ_PATH = ../../obj/$(SRC_PATH_NAME)/
+SCRIPTS_PATH = $(PROJECT_PATH)scripts/
+PRINTF_PATH = ../../libftprintf/
+LIBFT_PATH = $(PRINTF_PATH)/libft/
 LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
-INC_PATH = ../../includes \
-		   $(addsuffix /includes/, $(LIB_PATH))
+INC_PATH = ../../includes/ \
+		   $(addsuffix includes/, $(LIB_PATH))
 
 # Includes & libraries
 SDL2_CLAGS = $(shell sdl2-config --cflags)
@@ -34,6 +35,15 @@ SDL2_LIBS = $(shell sdl2-config --libs)
 CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CLAGS) #`sdl2-config --cflags`
 LDFLAGS = $(addprefix -L ,$(LIB_PATH)) $(SDL2_LIBS) #`sdl2-config --libs`
 LDLIBS = -lft -lftprintf
+
+DEPENDENCIES = $(PROJECT_PATH)includes/lemin.h\
+
+# Prerequisites
+PREREQUISITES_NAME = 	\
+						setup_graphviz.sh\
+#						setup_sdl2.sh\
+
+PREREQUISITES = $(addprefix $(SCRIPTS_PATH), $(PREREQUISITES_NAME))
 
 # Sources
 SRC_NAME = 	\
@@ -69,7 +79,8 @@ else
 endif
 
 # MAKEFLAGS
-MAKE = make --no-print-directory -C #$(MAKEFLAGS)
+MAKE = make | perl -ne '$|=1; print unless /nothing to be done|up to date/i'
+MAKEC = make -s --no-print-directory -C
 
 # Variables
 COUNTER=0
@@ -112,12 +123,19 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 
 all: $(NAME)
 
-$(NAME): setup_SDL2 libftprintf.a $(OBJ_PATH) $(OBJ)
+$(NAME): prerequisites $(OBJ_PATH) $(OBJ)
 	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
+prerequisites:
+	@$(foreach PREREQUISITES_NAME, $(PREREQUISITES_NAME), $(PREREQUISITES);)
+	@make libftprintf.a
+
+$(SCRITPS_PATH)%.sh:
+	echo dsdsdsd $<
+
 libftprintf.a:
-	@$(MAKE) $(PRINTF_PATH) $@
+	@$(MAKEC) $(PRINTF_PATH) $@
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
@@ -125,7 +143,7 @@ $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
 	@mkdir -p $(OBJ_PATH)/$(SRC_PATH_MUTUAL)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c 
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(DEPENDENCIES)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	@echo -e $(LINKING)
 	@$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
@@ -134,7 +152,7 @@ clean:
 	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
 	@echo -e $(OBJECTS_DEL)
 	@rm -Rf $(OBJ_PATH)
-	@$(MAKE) $(PRINTF_PATH) clean_quiet
+	@$(MAKEC) $(PRINTF_PATH) clean_quiet
 
 fclean:
 	@echo -e "$(TITLE)fclean $(NAME)$(END_TITLE)"
@@ -142,10 +160,9 @@ fclean:
 	@rm -Rf $(OBJ_PATH)
 	@echo -e $(BIN_DEL)
 	@rm -f $(NAME)
-	@$(MAKE) $(PRINTF_PATH) fclean_quiet
+	@$(MAKEC) $(PRINTF_PATH) fclean_quiet
 
 re: fclean all
-
 
 # Norm
 norme:
@@ -162,22 +179,6 @@ init_submodule:
 update_submodule:
 	git submodule update --recursive --remote
 
-# SDL2
-setup_SDL2:
-	@if [ $(OS) = Darwin ]; then make SDL2_Darwin; fi;
-	@if [ $(OS) = Linux ]; then make SDL2_Linux; fi;
-
-SDL2_Darwin:
-	@if !(brew ls --versions sdl2 > /dev/null); then \
-		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
-		brew update && brew install sdl2; \
-	fi;
-
-SDL2_Linux:
-	@if !(dpkg -s libsdl2-dev > /dev/null); then \
-		echo -e "$(TITLE)setup sdl2$(END_TITLE)"; \
-		sudo apt-get install --yes libsdl2-dev; \
-	fi;
 
 # **************************************************************************** #
 # Personal notes :                                                             #

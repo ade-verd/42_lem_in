@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/29 16:45:44 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/06/29 18:04:00 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,8 @@ DEPENDENCIES = $(PROJECT_PATH)includes/lemin.h\
 
 # Prerequisites
 PREREQUISITES_NAME = 	\
-						setup_sdl2.sh\
 						setup_graphviz.sh\
+#						setup_sdl2.sh\
 
 PREREQUISITES = $(addprefix $(SCRIPTS_PATH), $(PREREQUISITES_NAME))
 
@@ -97,7 +97,8 @@ else
 endif
 
 # MAKEFLAGS
-MAKE = make --no-print-directory -C #$(MAKEFLAGS)
+MAKE = make | perl -ne '$|=1; print unless /nothing to be done|up to date/i'
+MAKEC = make -s --no-print-directory -C
 
 # Variables
 COUNTER=0
@@ -152,7 +153,7 @@ $(SCRITPS_PATH)%.sh:
 	echo dsdsdsd $<
 
 libftprintf.a:
-	@$(MAKE) $(PRINTF_PATH) $@
+	@$(MAKEC) $(PRINTF_PATH) $@
 
 $(OBJ_PATH):
 	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
@@ -169,7 +170,7 @@ clean:
 	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
 	@echo -e $(OBJECTS_DEL)
 	@rm -Rf $(OBJ_PATH)
-	@$(MAKE) $(PRINTF_PATH) clean_quiet
+	@$(MAKEC) $(PRINTF_PATH) clean_quiet
 
 fclean:
 	@echo -e "$(TITLE)fclean $(NAME)$(END_TITLE)"
@@ -177,7 +178,7 @@ fclean:
 	@rm -Rf $(OBJ_PATH)
 	@echo -e $(BIN_DEL)
 	@rm -f $(NAME)
-	@$(MAKE) $(PRINTF_PATH) fclean_quiet
+	@$(MAKEC) $(PRINTF_PATH) fclean_quiet
 
 re: fclean all
 
