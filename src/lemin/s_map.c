@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:30:07 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/25 17:54:15 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/29 18:47:15 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_map_init(t_map **map)
 	(*map)->nb_start = 0;
 	(*map)->nb_end = 0;
 	(*map)->rooms = 0;
+	(*map)->solutions = 0;
 	(*map)->head = NULL;
 	(*map)->ways = NULL;
 	(*map)->start = NULL;

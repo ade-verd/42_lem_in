@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/29 16:42:27 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/06/29 18:45:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct	s_map
 	int			nb_start;
 	int			nb_end;
 	int			rooms;
+	int			solutions;
 	t_room		*head;
 	t_room		*start;
 	t_room		*end;
