@@ -17,23 +17,25 @@ SETUP=--$LOG_CLEAR$LOG_GREEN$V$LOG_NOCOLOR'\t'setup\ .....................\ $LOG
 KO=--$LOG_CLEAR$LOG_RED$X$LOG_NOCOLOR'\t'setup\ .....................\ $LOG_VIOLET
 KO_MSG="Please check and install manually"
 
-NAME="libSDL2"
+NAME="graphviz"
 
-if [ "$OS" == Darwine ]
+if [ "$OS" == Darwin ]
 	then
-	if !(brew ls --versions sdl2 > /dev/null)
+	if !(brew ls --versions graphviz > /dev/null)
 	then
 		echo -e $TITLE$TITLE_MSG$END
 		echo -e $SETUP$NAME$END
-		brew update && brew install sdl2
+		brew update
+		brew install graphviz
 	fi
 elif [ "$OS" == Linux ]
 	then
-	if !(dpkg -s libsdl2-dev > /dev/null)
+	if !(dpkg -s graphviz > /dev/null)
 	then
 		echo -e $TITLE$TITLE_MSG$END
 		echo -e $SETUP$NAME$END
-		sudo apt-get install --yes libsdl2-dev
+		sudo apt-get update
+		sudo apt-get install --yes graphviz
 	fi
 else
 	echo -e $TITLE$TITLE_MSG$END

@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/28 20:28:44 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/06/29 16:45:44 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ SDL2_LIBS = $(shell sdl2-config --libs)
 CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CLAGS) #`sdl2-config --cflags`
 LDFLAGS = $(addprefix -L ,$(LIB_PATH)) $(SDL2_LIBS) #`sdl2-config --libs`
 LDLIBS = -lft -lftprintf
+
+DEPENDENCIES = $(PROJECT_PATH)includes/lemin.h\
 
 # Prerequisites
 PREREQUISITES_NAME = 	\
@@ -143,8 +145,11 @@ $(NAME): prerequisites $(OBJ_PATH) $(OBJ)
 	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
 prerequisites:
-#	@$(foreach FILE, $(PREREQUISITES_NAME), echo $(SCRIPTS_PATH)$(PREREQUISITES_NAME))
+	@$(foreach PREREQUISITES_NAME, $(PREREQUISITES_NAME), $(PREREQUISITES);)
 	@make libftprintf.a
+
+$(SCRITPS_PATH)%.sh:
+	echo dsdsdsd $<
 
 libftprintf.a:
 	@$(MAKE) $(PRINTF_PATH) $@
@@ -155,7 +160,7 @@ $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
 	@mkdir -p $(OBJ_PATH)/$(SRC_PATH_MUTUAL)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c 
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(DEPENDENCIES)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 	@echo -e $(LINKING)
 	@$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
