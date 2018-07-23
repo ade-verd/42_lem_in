@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/29 18:45:05 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 09:31:15 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ int				ft_count_issues(t_map *map);
 int				find_issues(t_map *map, t_room *current, int hit);
 void			ft_sort_issues(t_map *map);
 void			ft_select_issues(t_map *map);
+void			ft_sort_selected_issues(t_map *map);
 
 /*
 ** solve

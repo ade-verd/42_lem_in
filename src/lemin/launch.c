@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 14:28:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/29 18:35:26 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 09:20:22 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void		launch_ants(t_map *map)
 void		solve(t_map *map)
 {
 	map->nb_start = map->ants;
-	ft_printf("rooms : %d\n", map->rooms);
 	while (map->nb_end < map->ants)
 	{
 		map->lap++;
