@@ -6,11 +6,27 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 14:28:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/23 09:20:22 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 17:27:42 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+static void	status_ants(t_map *map)
+{
+	if (map->flags & FLAG_STATUS)
+	{
+		if (!(map->flags & FLAG_MUTE))
+			ft_putchar('\n');
+		ft_printf("Initial number of ants: \t%d\n", map->ants);
+		ft_printf("Number of ants arrived: \t%d\n", map->nb_end);
+		ft_printf("Number of remaining ants: \t%d\n", map->nb_start);
+		if (map->ants == map->nb_end && !map->nb_start)
+			ft_printf("OK\n");
+		else
+			ft_printf("ERROR\n");
+	}
+}
 
 void		launch_ants(t_map *map)
 {
@@ -42,6 +58,8 @@ void		solve(t_map *map)
 		move_all(map);
 		if (map->nb_start)
 			launch_ants(map);
-		ft_putchar('\n');
+		if (!(map->flags & FLAG_MUTE))
+			ft_putchar('\n');
 	}
+	status_ants(map);
 }

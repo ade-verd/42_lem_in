@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 14:34:57 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/22 21:21:51 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 17:30:12 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static void	display_antmove(t_map *map, t_room *to)
 
 void		move_ant(t_map *map, t_room *from, t_room *to)
 {
-//	ft_printf("from: %s\t", from->id);
-//	ft_printf("to: %s\t", to->id);
 	if (to == map->end)
 		map->nb_end++;
 	if (to->ant_id != 0)
@@ -30,10 +28,10 @@ void		move_ant(t_map *map, t_room *from, t_room *to)
 	to->ant_id = from->ant_id;
 	from->ant_id = 0;
 	map->lapsmove++;
-	display_antmove(map, to);
+	if (!(map->flags & FLAG_MUTE))
+		display_antmove(map, to);
 	if (to == map->end)
 		to->ant_id = 0;
-//	ft_putchar('\n'); //A SUPPRIMER
 }
 
 void		move_all(t_map *map)

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 12:43:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/23 10:19:41 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 17:28:52 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_option_f_open(t_map *map)
 {
 	if (!map->path)
 		ft_error(&map, "-f: no [file].txt specified", 0);
-	if ((map->flags & FLAG_F) == 0 && map->path)
+	if ((map->flags & FLAG_FILE) == 0 && map->path)
 		ft_error(&map, "[file].txt detected. Please specify option: \"-f\"", 0);
 	if ((map->fd = ft_open_fd(map->path, O_RDONLY, S_IRUSR)) == -1)
 		ft_error(&map, (char*)__FUNCTION__, 0);
@@ -29,7 +29,7 @@ static void	ft_option_f_open(t_map *map)
 
 void		ft_deal_options(t_map *map)
 {
-	if ((map->flags & FLAG_F) != 0 || map->path)
+	if ((map->flags & FLAG_FILE) != 0 || map->path)
 		ft_option_f_open(map);
 }
 void		ft_deal_options_quit(t_map *map)

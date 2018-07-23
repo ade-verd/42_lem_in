@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/23 16:37:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 17:28:42 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
 # include <limits.h>
 # include "ft_printf.h"
 
-# define NO_FLAG	0
-# define FLAG_F		1 // -f file
-# define FLAG_R		2 // -r rooms
-# define FLAG_W		4 // -w selected ways
-# define FLAG_WW	8 // -W all ways
-# define FLAG_S		16 // -s status : launched, in start, arrived && check
-# define FLAG_C		32 // -c no context
-# define FLAG_M		64 // -m mute > activate -s && -c
+# define FLAG_FILE			1 // -f file
+# define FLAG_ROOMS			2 // -r rooms
+# define FLAG_WAYS_SEL		4 // -w selected ways
+# define FLAG_WAYS_ALL		8 // -W all ways
+# define FLAG_STATUS		16 // -s status : launched, in start, arrived && check
+# define FLAG_CONTEXT_NO	32 // -c no context
+# define FLAG_MUTE			64 // -m mute > activate -s && -c
+# define FLAG_GRAPH			12 // graphviz
 
-# define REVERSE	-1
-# define CMD_START	1
-# define CMD_END	2
+# define REVERSE			-1
+# define CMD_START			1
+# define CMD_END			2
 
 struct			s_link;
 

@@ -15,22 +15,23 @@
 static void	ft_check_args(t_map *map, char *str)
 {
 	if (str[0] == '-' && ft_strchr(str, 'w'))
-		map->flags = map->flags | FLAG_W;
+		map->flags = map->flags | FLAG_WAYS_SEL;
 	if (str[0] == '-' && ft_strchr(str, 'W'))
-		map->flags = map->flags | FLAG_WW;
+		map->flags = map->flags | FLAG_WAYS_ALL;
 	if (str[0] == '-' && (ft_strchr(str, 's') || ft_strchr(str, 'S')))
-		map->flags = map->flags | FLAG_S;
+		map->flags = map->flags | FLAG_STATUS;
 	if (str[0] == '-' && (ft_strchr(str, 'c') || ft_strchr(str, 'C')))
-		map->flags = map->flags | FLAG_C;
+		map->flags = map->flags | FLAG_CONTEXT_NO;
 	if (str[0] == '-' && (ft_strchr(str, 'r') || ft_strchr(str, 'R')))
-		map->flags = map->flags | FLAG_R;
+		map->flags = map->flags | FLAG_ROOMS;
 	if (str[0] == '-' && (ft_strchr(str, 'm') || ft_strchr(str, 'M')))
 	{
-		map->flags = map->flags | FLAG_M;
-		map->flags = map->flags | FLAG_C;
+		map->flags = map->flags | FLAG_MUTE;
+		map->flags = map->flags | FLAG_CONTEXT_NO;
+		map->flags = map->flags | FLAG_STATUS;
 	}
 	if (str[0] == '-' && (ft_strchr(str, 'f') || ft_strchr(str, 'F')))
-		map->flags = map->flags | FLAG_F;
+		map->flags = map->flags | FLAG_FILE;
 	ft_strstr(str, ".txt") ? map->path = ft_strdup(str) : map->path;
 }
 
