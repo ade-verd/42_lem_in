@@ -22,6 +22,8 @@ static void	ft_check_args(t_map *map, char *str)
 		map->flags = map->flags | FLAG_S;
 	if (str[0] == '-' && (ft_strchr(str, 'c') || ft_strchr(str, 'C')))
 		map->flags = map->flags | FLAG_C;
+	if (str[0] == '-' && (ft_strchr(str, 'r') || ft_strchr(str, 'R')))
+		map->flags = map->flags | FLAG_R;
 	if (str[0] == '-' && (ft_strchr(str, 'm') || ft_strchr(str, 'M')))
 	{
 		map->flags = map->flags | FLAG_M;
