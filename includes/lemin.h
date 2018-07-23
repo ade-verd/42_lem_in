@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/23 09:31:15 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 12:15:10 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 # include <errno.h>
 # include <limits.h>
 # include "ft_printf.h"
+
+# define NO_FLAG	0
+# define FLAG_F		1 // -f file
+# define FLAG_R		2 // -r rooms
+# define FLAG_W		4 // -w selected ways
+# define FLAG_WW	8 // -W all ways
+# define FLAG_S		16 // -s status : launched, in start, arrived && check
+# define FLAG_C		32 // -c no context
+# define FLAG_M		64 // -m mute > activate -s && -c
 
 # define REVERSE	-1
 # define CMD_START	1
@@ -63,29 +72,29 @@ typedef struct	s_line
 
 typedef struct	s_map
 {
-	int			ants;
-	int			lap;
-	int			lapsmove;
-	int			nb_start;
-	int			nb_end;
-	int			rooms;
-	int			solutions;
-	t_room		*head;
-	t_room		*start;
-	t_room		*end;
-	t_way		*ways;
-	t_line		*lines;
-	int			command;
-	int			option_f;
-	int			fd;
-	char		*path;
+	int				ants;
+	int				lap;
+	int				lapsmove;
+	int				nb_start;
+	int				nb_end;
+	int				rooms;
+	int				solutions;
+	t_room			*head;
+	t_room			*start;
+	t_room			*end;
+	t_way			*ways;
+	t_line			*lines;
+	int				command;
+	int				flags;
+	int				fd;
+	char			*path;
 }				t_map;
 
 /*
 ** Options
 */
-void			ft_deal_options(t_map **map);
-void			ft_deal_options_quit(t_map **map);
+void			ft_deal_options(t_map *map);
+void			ft_deal_options_quit(t_map *map);
 
 /*
 ** Map
@@ -146,7 +155,7 @@ void			ft_select_issues(t_map *map);
 void			ft_sort_selected_issues(t_map *map);
 
 /*
-** solve
+** Solve
 */
 void			solve(t_map *map);
 void			move_ant(t_map *map, t_room *from, t_room *to);
@@ -155,10 +164,12 @@ void			move_all(t_map *map);
 /*
 ** Display
 */
+void			ft_display_context(t_map *map);
 void			ft_read_rooms(t_map *map);
 void			ft_read_links(t_room *current);
 void			ft_read_last_way(t_map *map);
-void			ft_read_ways(t_map *map);
+void			ft_read_all_ways(t_map *map);
+void			ft_read_selected_ways(t_map *map);
 
 /*
 ** Errors

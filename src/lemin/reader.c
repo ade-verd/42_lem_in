@@ -12,11 +12,24 @@
 
 #include "lemin.h"
 
-static void	ft_check_args(t_map **map, char *str)
+static void	ft_check_args(t_map *map, char *str)
 {
-	if (str[0] == '-' && ft_strchr(str, 'f'))
-		(*map)->option_f = 1;
-	ft_strstr(str, ".txt") ? (*map)->path = ft_strdup(str) : (*map)->path;
+	if (str[0] == '-' && ft_strchr(str, 'w'))
+		map->flags = map->flags | FLAG_W;
+	if (str[0] == '-' && ft_strchr(str, 'W'))
+		map->flags = map->flags | FLAG_WW;
+	if (str[0] == '-' && (ft_strchr(str, 's') || ft_strchr(str, 'S')))
+		map->flags = map->flags | FLAG_S;
+	if (str[0] == '-' && (ft_strchr(str, 'c') || ft_strchr(str, 'C')))
+		map->flags = map->flags | FLAG_C;
+	if (str[0] == '-' && (ft_strchr(str, 'm') || ft_strchr(str, 'M')))
+	{
+		map->flags = map->flags | FLAG_M;
+		map->flags = map->flags | FLAG_C;
+	}
+	if (str[0] == '-' && (ft_strchr(str, 'f') || ft_strchr(str, 'F')))
+		map->flags = map->flags | FLAG_F;
+	ft_strstr(str, ".txt") ? map->path = ft_strdup(str) : map->path;
 }
 
 void		ft_read_args(t_map **map, int ac, char **av)
@@ -30,7 +43,7 @@ void		ft_read_args(t_map **map, int ac, char **av)
 		i = ft_countwords(av[ac], ' ');
 		tab = ft_strsplit(av[ac], ' ');
 		while (--i >= 0)
-			ft_check_args(map, tab[i]);
+			ft_check_args(*map, tab[i]);
 		ft_freetab_strsplit(tab);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:30:07 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/29 18:47:15 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 09:59:39 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_map_init(t_map **map)
 	(*map)->end = NULL;
 	(*map)->lines = NULL;
 	(*map)->command = 0;
-	(*map)->option_f = 0;
+	(*map)->flags = 0;
 	(*map)->fd = 0;
 	(*map)->path = NULL;
 }
