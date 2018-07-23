@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/23 14:01:55 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 16:55:44 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		main(int ac, char **av)
 	ft_sort_selected_issues(map);
 	ft_display_context(map);
 	solve(map);
-	ft_printf("       MCSWwRF\n");
-	ft_printf("flags: %07b\n", map->flags);
+	//ft_printf("       MCSWwRF\n");
+	//ft_printf("flags: %07b\n", map->flags);
 	ft_deal_options_quit(map);
 	ft_map_del(&map);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/23 12:15:10 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 16:37:53 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct	s_map
 	t_way			*ways;
 	t_line			*lines;
 	int				command;
-	int				flags;
+	unsigned char	flags;
 	int				fd;
 	char			*path;
 }				t_map;

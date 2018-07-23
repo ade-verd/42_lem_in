@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 18:29:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/23 13:51:50 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/23 16:45:31 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,14 @@ void	ft_read_rooms(t_map *map)
 
 void	ft_display_context(t_map *map)
 {
-	if ((map->flags | FLAG_M) != 0)
+	if (map->flags & FLAG_M)
 		return ;
-	if ((map->flags | FLAG_C) == 0)
+	if (!(map->flags & FLAG_C))
 		ft_read_lines(map);
-	if ((map->flags | FLAG_R) != 0)
+	if (map->flags & FLAG_R)
 		ft_read_rooms(map);
-	if ((map->flags | FLAG_W) != 0 && (map->flags | FLAG_WW) == 0)
+	if ((map->flags & FLAG_W) && !(map->flags & FLAG_WW))
 		ft_read_selected_ways(map);
-	else if ((map->flags | FLAG_WW) != 0)
+	else if (map->flags & FLAG_WW)
 		ft_read_all_ways(map);
 }
