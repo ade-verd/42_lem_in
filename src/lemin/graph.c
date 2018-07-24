@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:30:43 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/24 19:22:01 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/24 19:25:02 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	ft_create_graphfile(t_map *map)
 	if ((fd = ft_open_fd(DOTFILE, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR)) == -1)
 		ft_error(&map, "ft_create_graphfile", 0);
 	ft_putstr_fd("graph G {\n", fd);
+	ft_putstr_fd("\tconcentrate=true;\n", fd);
 	ft_putstr_fd("\trankdir=LR;\n", fd);
 	fdprint_rooms_links(map, fd);
 	ft_putstr_fd("}\n", fd);
