@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 18:29:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/23 17:30:55 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/24 14:54:41 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_read_all_ways(t_map *map)
 		ways->rooms[0] ? ft_printf("%s\n", F_NO) : ft_putstr(F_NO);
 		ways = ways->next;
 	}
+	ft_putchar('\n');
 }
 
 void	ft_read_selected_ways(t_map *map)
@@ -53,6 +54,7 @@ void	ft_read_selected_ways(t_map *map)
 		ways->rooms[0] ? ft_printf("%s\n", F_NO) : ft_putstr(F_NO);
 		ways = ways->next;
 	}
+	ft_putchar('\n');
 }
 
 void	ft_read_links(t_room *current)
@@ -60,7 +62,7 @@ void	ft_read_links(t_room *current)
 	t_link	*link;
 
 	link = current->link;
-	link ? ft_printf("links:\t") : ft_printf("links:\t(null)");
+	link ? ft_printf("  links:\t") : ft_printf("  links:\t(null)");
 	while (link)
 	{
 		ft_printf("%s", link->to->id);
@@ -82,15 +84,12 @@ void	ft_read_rooms(t_map *map)
 			ft_putstr(F_GREEN);
 		if (cpy == map->end)
 			ft_putstr(F_RED);
-		ft_printf("id:\t%s\n", cpy->id);
-		ft_printf("x:\t%d\n", cpy->x);
-		ft_printf("y:\t%d\n", cpy->y);
+		ft_printf("☐ id (x, y):\t%s (%d, %d)\n", cpy->id, cpy->x, cpy->y);
 		ft_read_links(cpy);
-		if (cpy->next)
-			ft_printf("%s___\n", F_NO);
+		ft_putstr(F_NO);
 		cpy = cpy->next;
 	}
-	ft_putstr(F_NO);
+	ft_putchar('\n');
 }
 
 void	ft_display_context(t_map *map)
