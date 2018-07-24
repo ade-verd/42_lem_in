@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/23 17:28:42 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/24 17:37:06 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,19 @@
 # include <limits.h>
 # include "ft_printf.h"
 
-# define FLAG_FILE			1 // -f file
-# define FLAG_ROOMS			2 // -r rooms
-# define FLAG_WAYS_SEL		4 // -w selected ways
-# define FLAG_WAYS_ALL		8 // -W all ways
-# define FLAG_STATUS		16 // -s status : launched, in start, arrived && check
-# define FLAG_CONTEXT_NO	32 // -c no context
-# define FLAG_MUTE			64 // -m mute > activate -s && -c
-# define FLAG_GRAPH			12 // graphviz
+# define FLAG_HELP			1 // help
+# define FLAG_FILE			2 // -f file
+# define FLAG_ROOMS			4 // -r rooms
+# define FLAG_WAYS_SEL		8 // -w selected ways
+# define FLAG_WAYS_ALL		16 // -W all ways
+# define FLAG_STATUS		32 // -s status : launched, in start, arrived && check
+# define FLAG_CONTEXT_NO	64 // -c no context
+# define FLAG_MUTE			128 // -m mute > activate -s && -c
+# define FLAG_GRAPH			256 // graphviz
+
+# define GRAPH_SH			"./scripts/create_graph.sh"
+# define DOTFILE			"./.graph/graph.dot"
+# define PNGFILE			"./.graph/mygraph.png"
 
 # define REVERSE			-1
 # define CMD_START			1
@@ -85,7 +90,7 @@ typedef struct	s_map
 	t_way			*ways;
 	t_line			*lines;
 	int				command;
-	unsigned char	flags;
+	int				flags;
 	int				fd;
 	char			*path;
 }				t_map;
@@ -170,6 +175,11 @@ void			ft_read_links(t_room *current);
 void			ft_read_last_way(t_map *map);
 void			ft_read_all_ways(t_map *map);
 void			ft_read_selected_ways(t_map *map);
+
+/*
+** Graph
+*/
+void			ft_create_graphfile(t_map *map);
 
 /*
 ** Errors

@@ -14,6 +14,12 @@
 
 static void	ft_check_args(t_map *map, char *str)
 {
+	if (str[0] == '-' && (ft_strchr(str, 'h') || ft_strchr(str, 'H')))
+		map->flags = map->flags | FLAG_HELP;
+	if (str[0] == '-' && (ft_strchr(str, 'f') || ft_strchr(str, 'F')))
+		map->flags = map->flags | FLAG_FILE;
+	if (str[0] == '-' && (ft_strchr(str, 'r') || ft_strchr(str, 'R')))
+		map->flags = map->flags | FLAG_ROOMS;
 	if (str[0] == '-' && ft_strchr(str, 'w'))
 		map->flags = map->flags | FLAG_WAYS_SEL;
 	if (str[0] == '-' && ft_strchr(str, 'W'))
@@ -22,16 +28,14 @@ static void	ft_check_args(t_map *map, char *str)
 		map->flags = map->flags | FLAG_STATUS;
 	if (str[0] == '-' && (ft_strchr(str, 'c') || ft_strchr(str, 'C')))
 		map->flags = map->flags | FLAG_CONTEXT_NO;
-	if (str[0] == '-' && (ft_strchr(str, 'r') || ft_strchr(str, 'R')))
-		map->flags = map->flags | FLAG_ROOMS;
 	if (str[0] == '-' && (ft_strchr(str, 'm') || ft_strchr(str, 'M')))
 	{
 		map->flags = map->flags | FLAG_MUTE;
 		map->flags = map->flags | FLAG_CONTEXT_NO;
 		map->flags = map->flags | FLAG_STATUS;
 	}
-	if (str[0] == '-' && (ft_strchr(str, 'f') || ft_strchr(str, 'F')))
-		map->flags = map->flags | FLAG_FILE;
+	if (str[0] == '-' && (ft_strchr(str, 'g') || ft_strchr(str, 'G')))
+		map->flags = map->flags | FLAG_GRAPH;
 	ft_strstr(str, ".txt") ? map->path = ft_strdup(str) : map->path;
 }
 

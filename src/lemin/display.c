@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 18:29:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/24 14:54:41 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/24 16:36:04 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	ft_read_rooms(t_map *map)
 
 void	ft_display_context(t_map *map)
 {
+	if (map->flags & FLAG_GRAPH)
+		ft_create_graphfile(map);
 	if (map->flags & FLAG_MUTE)
 		return ;
 	if (!(map->flags & FLAG_CONTEXT_NO))

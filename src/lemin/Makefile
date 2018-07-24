@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/29 18:04:00 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/07/24 17:46:54 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_PATH_NAME = $(notdir $(CURDIR))
 SRC_PATH_MUTUAL = ../mutual/
 OBJ_PATH = ../../obj/$(SRC_PATH_NAME)/
 SCRIPTS_PATH = $(PROJECT_PATH)scripts/
+GRAPH_PATH = $(PROJECT_PATH).graph/
 PRINTF_PATH = ../../libftprintf/
 LIBFT_PATH = $(PRINTF_PATH)/libft/
 LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
@@ -62,6 +63,7 @@ SRC_NAME = 	\
 			issues.c\
 			select.c\
 			display.c\
+			graph.c\
 			\
 			launch.c\
 			move.c\
@@ -148,9 +150,7 @@ $(NAME): prerequisites $(OBJ_PATH) $(OBJ)
 prerequisites:
 	@$(foreach PREREQUISITES_NAME, $(PREREQUISITES_NAME), $(PREREQUISITES);)
 	@make libftprintf.a
-
-$(SCRITPS_PATH)%.sh:
-	echo dsdsdsd $<
+	@mkdir -p $(GRAPH_PATH)
 
 libftprintf.a:
 	@$(MAKEC) $(PRINTF_PATH) $@
@@ -178,6 +178,7 @@ fclean:
 	@rm -Rf $(OBJ_PATH)
 	@echo -e $(BIN_DEL)
 	@rm -f $(NAME)
+	@rm -Rf $(GRAPH_PATH)
 	@$(MAKEC) $(PRINTF_PATH) fclean_quiet
 
 re: fclean all

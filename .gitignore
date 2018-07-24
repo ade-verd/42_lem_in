@@ -3,6 +3,7 @@ lem-in
 visu-hex
 test_lemin
 a.out
+.graph/
 
 # # C # #
 # Prerequisites
