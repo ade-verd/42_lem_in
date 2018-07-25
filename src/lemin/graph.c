@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:30:43 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/24 19:26:39 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/25 12:31:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ static void	fdprint_rooms_links(t_map *map, int fd)
 	while (cpy)
 	{
 		if (cpy == map->start)
-			ft_dprintf(fd, "\t%s [label=\"START\"][peripheries=2];\n", cpy->id);
+			ft_dprintf(fd, "\t%s [label=START, peripheries=2];\n", cpy->id);
 		else if (cpy == map->end)
-			ft_dprintf(fd, "\t%s [label=\"END\"][peripheries=2];\n", cpy->id);
+			ft_dprintf(fd, "\t%s [label=END, peripheries=2];\n", cpy->id);
 		else
 			ft_dprintf(fd, "\t%s;\n", cpy->id);
 		fdprint_links(map, cpy, fd);
@@ -83,15 +83,17 @@ void	ft_create_graphfile(t_map *map)
 {
 	int		fd;
 
-	ft_remove(DOTFILE);
+	if (ft_file_exists(DOTFILE))
+		ft_remove(DOTFILE);
 	if ((fd = ft_open_fd(DOTFILE, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR)) == -1)
 		ft_error(&map, "ft_create_graphfile", 0);
 	ft_putstr_fd("graph G {\n", fd);
 	ft_putstr_fd("\tconcentrate=true;\n", fd);
 	ft_putstr_fd("\tbgcolor=transparent;\n", fd);
 	ft_putstr_fd("\trankdir=LR;\n", fd);
+	ft_putstr_fd("\n", fd);
 	fdprint_rooms_links(map, fd);
-	ft_putstr_fd("}\n", fd);
+	ft_putstr_fd("}\n\0", fd);
 	if ((ft_close_fd(fd)) == -1)
 		ft_error(&map, "ft_create_graphfile", 0);
 	if ((execlp ("sh", "sh", GRAPH_SH, DOTFILE, PNGFILE, NULL)) == -1)
