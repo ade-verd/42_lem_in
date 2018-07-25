@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 15:20:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 19:12:14 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/25 14:36:15 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,18 @@ static int	iscompatible_with_selected(t_map *map, t_room **rooms)
 	return (1);
 }
 
+static void	ft_rooms_on_the_way(t_room **way_rooms)
+{
+	int		i;
+
+	i = 0;
+	while (way_rooms[i])
+	{
+		way_rooms[i]->way = 1;
+		i++;
+	}
+}
+
 void		ft_select_issues(t_map *map)
 {
 	t_way	*ways;
@@ -57,7 +69,10 @@ void		ft_select_issues(t_map *map)
 	while (ways)
 	{
 		if (iscompatible_with_selected(map, ways->rooms))
+		{
 			ways->select = 1;
+			ft_rooms_on_the_way(ways->rooms);
+		}
 		ways = ways->next;
 	}
 }

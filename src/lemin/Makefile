@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/07/24 17:46:54 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/07/25 15:57:13 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,9 @@ CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CLAGS) #`sdl2-config --cflags`
 LDFLAGS = $(addprefix -L ,$(LIB_PATH)) $(SDL2_LIBS) #`sdl2-config --libs`
 LDLIBS = -lft -lftprintf
 
-DEPENDENCIES = $(PROJECT_PATH)includes/lemin.h\
+DEPENDENCIES = 	$(PROJECT_PATH)includes/lemin.h\
+				$(PROJECT_PATH)includes/graph.h\
+
 
 # Prerequisites
 PREREQUISITES_NAME = 	\

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:30:43 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/25 12:31:05 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/25 17:41:46 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ static void	fdprint_links(t_map *map, t_room *current, int fd)
 		ft_dprintf(fd, "\t%s -- %s", current->id, link->to->id);
 		if (link_is_on_way(map, current, link->to, &par))
 		{
-			ft_dprintf(fd, " [color=red,penwidth=3.0]");
+			ft_dprintf(fd, " [color=skyblue,penwidth=2.5]");
 			if (current == map->start)
 				ft_dprintf(fd, " [label=\"Par: %d\"]", par);
+			else if (link->to == map->start)
+				ft_dprintf(fd, " [style=invis]", par);
 		}
 		ft_putstr_fd(";\n", fd);
 		link = link->next;
@@ -64,21 +66,35 @@ static void	fdprint_links(t_map *map, t_room *current, int fd)
 static void	fdprint_rooms_links(t_map *map, int fd)
 {
 	t_room	*cpy;
+	char	*label;
 
 	cpy = map->head;
 	while (cpy)
 	{
-		if (cpy == map->start)
-			ft_dprintf(fd, "\t%s [label=START, peripheries=2];\n", cpy->id);
-		else if (cpy == map->end)
-			ft_dprintf(fd, "\t%s [label=END, peripheries=2];\n", cpy->id);
+		if (cpy == map->start || cpy == map->end)
+		{
+			label = (cpy == map->start) ? LABEL_START : LABEL_END;
+			ft_dprintf(fd, "\t%s [%s, %s];\n", cpy->id, label, GV_STARTEND);
+		}
+		else if (cpy->way)
+			ft_dprintf(fd, "\t%s [%s];\n", cpy->id, GV_NODE_WAY);
 		else
-			ft_dprintf(fd, "\t%s;\n", cpy->id);
+			ft_dprintf(fd, "\t%s %s\n", cpy->id, GV_NODE);
 		fdprint_links(map, cpy, fd);
 		cpy = cpy->next;
 	}
 }
-
+static void	write_dotfile(t_map *map, int fd)
+{
+	ft_dprintf(fd, "graph G {\n");
+	ft_dprintf(fd, "\t%s;\n", GV_CONCENTRATE);
+	ft_dprintf(fd, "\t%s;\n", GV_BGCOLOR);
+	ft_dprintf(fd, "\t%s;\n", GV_RANKDIR);
+	ft_dprintf(fd, "\t%s;\n", GV_EDGE);
+	ft_dprintf(fd, "\t%s;\n\n", GV_NODE);
+	fdprint_rooms_links(map, fd);
+	ft_putstr_fd("}\n\0", fd);
+}
 void	ft_create_graphfile(t_map *map)
 {
 	int		fd;
@@ -87,18 +103,15 @@ void	ft_create_graphfile(t_map *map)
 		ft_remove(DOTFILE);
 	if ((fd = ft_open_fd(DOTFILE, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR)) == -1)
 		ft_error(&map, "ft_create_graphfile", 0);
-	ft_putstr_fd("graph G {\n", fd);
-	ft_putstr_fd("\tconcentrate=true;\n", fd);
-	ft_putstr_fd("\tbgcolor=transparent;\n", fd);
-	ft_putstr_fd("\trankdir=LR;\n", fd);
-	ft_putstr_fd("\n", fd);
-	fdprint_rooms_links(map, fd);
-	ft_putstr_fd("}\n\0", fd);
+	write_dotfile(map, fd);
 	if ((ft_close_fd(fd)) == -1)
 		ft_error(&map, "ft_create_graphfile", 0);
-	if ((execlp ("sh", "sh", GRAPH_SH, DOTFILE, PNGFILE, NULL)) == -1)
+	if (!fork())
 	{
-		ft_dprintf(2, "Graphviz execution failed\n");
-		ft_dprintf(2, "Try:\tdot -Tpng %s -o %s\n", DOTFILE, PNGFILE);
+		if ((execlp ("sh", "sh", GRAPH_SH, DOTFILE, PNGFILE, NULL)) == -1)
+		{
+			ft_dprintf(2, "Graphviz execution failed\n");
+			ft_dprintf(2, "Try:\tdot -Tpng %s -o %s\n", DOTFILE, PNGFILE);
+		}
 	}
 }

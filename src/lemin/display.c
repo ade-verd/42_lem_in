@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 18:29:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/24 16:36:04 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/25 17:42:23 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	ft_read_rooms(t_map *map)
 		if (cpy == map->end)
 			ft_putstr(F_RED);
 		ft_printf("☐ id (x, y):\t%s (%d, %d)\n", cpy->id, cpy->x, cpy->y);
+		ft_printf("  way:\t\t%d\n", cpy->way);
 		ft_read_links(cpy);
 		ft_putstr(F_NO);
 		cpy = cpy->next;
@@ -94,16 +95,18 @@ void	ft_read_rooms(t_map *map)
 
 void	ft_display_context(t_map *map)
 {
-	if (map->flags & FLAG_GRAPH)
+//	ft_printf("       GMCSWwRFH\n");
+//	ft_printf("flags: %08b\n", map->flags);
+	if ((map->flags & FLAG_GRAPH) != 0)
 		ft_create_graphfile(map);
-	if (map->flags & FLAG_MUTE)
+	if ((map->flags & FLAG_MUTE) != 0)
 		return ;
-	if (!(map->flags & FLAG_CONTEXT_NO))
+	if ((map->flags & FLAG_CONTEXT_NO) == 0)
 		ft_read_lines(map);
-	if (map->flags & FLAG_ROOMS)
+	if ((map->flags & FLAG_ROOMS) != 0)
 		ft_read_rooms(map);
-	if ((map->flags & FLAG_WAYS_SEL) && !(map->flags & FLAG_WAYS_ALL))
+	if ((map->flags & FLAG_WAYS_SEL) != 0 && (map->flags & FLAG_WAYS_ALL) == 0)
 		ft_read_selected_ways(map);
-	else if (map->flags & FLAG_WAYS_ALL)
+	else if ((map->flags & FLAG_WAYS_ALL) != 0)
 		ft_read_all_ways(map);
 }

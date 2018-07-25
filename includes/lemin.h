@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/24 17:37:06 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/25 15:06:46 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <errno.h>
 # include <limits.h>
 # include "ft_printf.h"
+# include "graph.h"
 
 # define FLAG_HELP			1 // help
 # define FLAG_FILE			2 // -f file
@@ -28,10 +29,6 @@
 # define FLAG_CONTEXT_NO	64 // -c no context
 # define FLAG_MUTE			128 // -m mute > activate -s && -c
 # define FLAG_GRAPH			256 // graphviz
-
-# define GRAPH_SH			"./scripts/create_graph.sh"
-# define DOTFILE			"./.graph/graph.dot"
-# define PNGFILE			"./.graph/mygraph.png"
 
 # define REVERSE			-1
 # define CMD_START			1
