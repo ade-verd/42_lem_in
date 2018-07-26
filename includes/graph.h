@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:50:41 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 16:25:11 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 17:21:49 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,26 @@
 /*
 ** General
 */
-# define GV_GRAPH 		"graph [label=\"ade-verd's graph\", "\
-						"labelloc=t, "\
-						"fontsize=30]"
+# define GV_TITLE		"42 - lem-in\\nade-verd's graph\\n "
+# define GV_GRAPH 		"graph [label=\""GV_TITLE"\", labelloc=t]"
 # define GV_CONCENTRATE	"concentrate=true"
 # define GV_BGCOLOR		"bgcolor=transparent"
 # define GV_RANKDIR_LR	"rankdir=LR"
 # define GV_EDGE		"edge [color=grey]"
-# define GV_NODE		"node [color=skyblue, "\
-						"fillcolor=azure, "\
-						"style=filled]"
+# define GV_NODE		"node [color=skyblue, fillcolor=azure, style=filled]"
 
 /*
 ** Nodes START & END
 */
 # define LABEL_START	"START"
 # define LABEL_END		"END"
-# define GV_STARTEND	"shape=box, "\
-						"fillcolor=skyblue, "\
-						"style=filled, "\
-						"peripheries=2"
+# define GV_STARTEND_C	"fillcolor=skyblue, style=filled"
+# define GV_STARTEND	"shape=box, peripheries=2, "GV_STARTEND_C
 
 /*
 ** Nodes on the way
 */
-# define GV_NODE_WAY	"fillcolor=skyblue, "\
-						"style=filled, "\
-						"fontcolor=white"
+# define GV_NODE_WAY	"fillcolor=skyblue, style=filled, fontcolor=white"
 
 /*
 ** Edges on the way
