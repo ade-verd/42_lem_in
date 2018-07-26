@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:50:41 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 16:12:00 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 16:25:11 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,10 @@
 # define GV_NODE_WAY	"fillcolor=skyblue, "\
 						"style=filled, "\
 						"fontcolor=white"
+
+/*
+** Edges on the way
+*/
+# define GV_EDGE_WAY	"[color=skyblue, penwidth=2.5]"
 
 #endif

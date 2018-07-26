@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:30:43 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 16:19:22 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 16:37:13 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	fdprint_links(t_map *map, t_room *current, int fd)
 		ft_dprintf(fd, "\t\"%s\" -- \"%s\"", current->id, link->to->id);
 		if (link_is_on_way(map, current, link->to, &par))
 		{
-			ft_dprintf(fd, " [color=skyblue,penwidth=2.5]");
+			ft_dprintf(fd, " %s", GV_EDGE_WAY);
 			if (current == map->start)
 				ft_dprintf(fd, " [label=\"Par: %d\"]", par);
 			else if (link->to == map->start)
@@ -74,14 +74,13 @@ static void	fdprint_rooms_links(t_map *map, int fd)
 		if (cpy == map->start || cpy == map->end)
 		{
 			label = (cpy == map->start) ? LABEL_START : LABEL_END;
-			//ft_dprintf(fd, "\t\"%s\" [%s, %s];\n", cpy->id, label, GV_STARTEND);
 			ft_dprintf(fd, "\t\"%s\" [label=\"%s\\n%s\", %s];\n",
 						cpy->id, label, cpy->id, GV_STARTEND);
 		}
 		else if (cpy->way)
 			ft_dprintf(fd, "\t\"%s\" [%s];\n", cpy->id, GV_NODE_WAY);
 		else
-			ft_dprintf(fd, "\t\"%s\" %s\n", cpy->id, GV_NODE);
+			ft_dprintf(fd, "\t\"%s\" %s;\n", cpy->id, GV_NODE);
 		fdprint_links(map, cpy, fd);
 		cpy = cpy->next;
 	}
