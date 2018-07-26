@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:30:43 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/25 17:41:46 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 12:35:19 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	fdprint_links(t_map *map, t_room *current, int fd)
 	link = current->link;
 	while (link)
 	{
-		ft_dprintf(fd, "\t%s -- %s", current->id, link->to->id);
+		ft_dprintf(fd, "\t\"%s\" -- \"%s\"", current->id, link->to->id);
 		if (link_is_on_way(map, current, link->to, &par))
 		{
 			ft_dprintf(fd, " [color=skyblue,penwidth=2.5]");
@@ -74,12 +74,12 @@ static void	fdprint_rooms_links(t_map *map, int fd)
 		if (cpy == map->start || cpy == map->end)
 		{
 			label = (cpy == map->start) ? LABEL_START : LABEL_END;
-			ft_dprintf(fd, "\t%s [%s, %s];\n", cpy->id, label, GV_STARTEND);
+			ft_dprintf(fd, "\t\"%s\" [%s, %s];\n", cpy->id, label, GV_STARTEND);
 		}
 		else if (cpy->way)
-			ft_dprintf(fd, "\t%s [%s];\n", cpy->id, GV_NODE_WAY);
+			ft_dprintf(fd, "\t\"%s\" [%s];\n", cpy->id, GV_NODE_WAY);
 		else
-			ft_dprintf(fd, "\t%s %s\n", cpy->id, GV_NODE);
+			ft_dprintf(fd, "\t\"%s\" %s\n", cpy->id, GV_NODE);
 		fdprint_links(map, cpy, fd);
 		cpy = cpy->next;
 	}
@@ -89,7 +89,7 @@ static void	write_dotfile(t_map *map, int fd)
 	ft_dprintf(fd, "graph G {\n");
 	ft_dprintf(fd, "\t%s;\n", GV_CONCENTRATE);
 	ft_dprintf(fd, "\t%s;\n", GV_BGCOLOR);
-	ft_dprintf(fd, "\t%s;\n", GV_RANKDIR);
+//	ft_dprintf(fd, "\t%s;\n", GV_RANKDIR);
 	ft_dprintf(fd, "\t%s;\n", GV_EDGE);
 	ft_dprintf(fd, "\t%s;\n\n", GV_NODE);
 	fdprint_rooms_links(map, fd);
@@ -114,4 +114,6 @@ void	ft_create_graphfile(t_map *map)
 			ft_dprintf(2, "Try:\tdot -Tpng %s -o %s\n", DOTFILE, PNGFILE);
 		}
 	}
+	else
+		perror("fork");
 }
