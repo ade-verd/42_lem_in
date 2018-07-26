@@ -16,8 +16,8 @@ static void	ft_check_args(t_map *map, char *str)
 {
 	if (str[0] == '-' && (ft_strchr(str, 'h') || ft_strchr(str, 'H')))
 		map->flags = map->flags | FLAG_HELP;
-	if (str[0] == '-' && (ft_strchr(str, 'f') || ft_strchr(str, 'F')))
-		map->flags = map->flags | FLAG_FILE;
+	if (str[0] == '-' && (ft_strchr(str, 'd') || ft_strchr(str, 'D')))
+		map->flags = map->flags | FLAG_DEBUG_FLAGS;
 	if (str[0] == '-' && (ft_strchr(str, 'r') || ft_strchr(str, 'R')))
 		map->flags = map->flags | FLAG_ROOMS;
 	if (str[0] == '-' && ft_strchr(str, 'w'))
@@ -34,9 +34,10 @@ static void	ft_check_args(t_map *map, char *str)
 		map->flags = map->flags | FLAG_CONTEXT_NO;
 		map->flags = map->flags | FLAG_STATUS;
 	}
-	if (str[0] == '-' && (ft_strchr(str, 'g') || ft_strchr(str, 'G')))
-		map->flags = map->flags | FLAG_GRAPH;
-	ft_strstr(str, ".txt") ? map->path = ft_strdup(str) : map->path;
+	if (str[0] == '-' && ft_strchr(str, 'g'))
+		map->flags = map->flags | FLAG_GRAPH_TB;
+	if (str[0] == '-' && ft_strchr(str, 'G'))
+		map->flags = map->flags | FLAG_GRAPH_LR;
 }
 
 void		ft_read_args(t_map **map, int ac, char **av)

@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/07/25 15:57:13 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/07/26 13:50:10 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,6 @@ SRC_NAME = 	\
 			s_ways.c\
 			s_lines.c\
 			\
-			options.c\
 			reader.c\
 			commands.c\
 			validity.c\
@@ -66,6 +65,7 @@ SRC_NAME = 	\
 			select.c\
 			display.c\
 			graph.c\
+			help.c\
 			\
 			launch.c\
 			move.c\

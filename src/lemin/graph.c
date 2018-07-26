@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:30:43 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 12:35:19 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 13:23:33 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,8 @@ static void	write_dotfile(t_map *map, int fd)
 	ft_dprintf(fd, "graph G {\n");
 	ft_dprintf(fd, "\t%s;\n", GV_CONCENTRATE);
 	ft_dprintf(fd, "\t%s;\n", GV_BGCOLOR);
-//	ft_dprintf(fd, "\t%s;\n", GV_RANKDIR);
+	if ((map->flags & FLAG_GRAPH_LR) != 0)
+		ft_dprintf(fd, "\t%s;\n", GV_RANKDIR_LR);
 	ft_dprintf(fd, "\t%s;\n", GV_EDGE);
 	ft_dprintf(fd, "\t%s;\n\n", GV_NODE);
 	fdprint_rooms_links(map, fd);

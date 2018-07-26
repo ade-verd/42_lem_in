@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/25 15:06:46 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 13:51:42 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,15 @@
 # include "graph.h"
 
 # define FLAG_HELP			1 // help
-# define FLAG_FILE			2 // -f file
+# define FLAG_DEBUG_FLAGS	2 // -d debug flags
 # define FLAG_ROOMS			4 // -r rooms
 # define FLAG_WAYS_SEL		8 // -w selected ways
 # define FLAG_WAYS_ALL		16 // -W all ways
 # define FLAG_STATUS		32 // -s status : launched, in start, arrived && check
 # define FLAG_CONTEXT_NO	64 // -c no context
 # define FLAG_MUTE			128 // -m mute > activate -s && -c
-# define FLAG_GRAPH			256 // graphviz
+# define FLAG_GRAPH_TB		256 // -g graphviz - rankdir top to bottom
+# define FLAG_GRAPH_LR		512 // -G graphviz - rankdir left to right
 
 # define REVERSE			-1
 # define CMD_START			1
@@ -89,14 +90,11 @@ typedef struct	s_map
 	int				command;
 	int				flags;
 	int				fd;
-	char			*path;
 }				t_map;
 
 /*
-** Options
+** Help
 */
-void			ft_deal_options(t_map *map);
-void			ft_deal_options_quit(t_map *map);
 
 /*
 ** Map

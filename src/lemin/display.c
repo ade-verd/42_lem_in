@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 18:29:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/25 17:42:23 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 13:25:36 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_display_context(t_map *map)
 {
 //	ft_printf("       GMCSWwRFH\n");
 //	ft_printf("flags: %08b\n", map->flags);
-	if ((map->flags & FLAG_GRAPH) != 0)
+	if ((map->flags & FLAG_GRAPH_TB) != 0 || (map->flags & FLAG_GRAPH_LR) != 0)
 		ft_create_graphfile(map);
 	if ((map->flags & FLAG_MUTE) != 0)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:50:41 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/25 16:15:46 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 13:23:41 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,27 @@
 */
 # define GV_CONCENTRATE	"concentrate=true"
 # define GV_BGCOLOR		"bgcolor=transparent"
-# define GV_RANKDIR		"rankdir=LR"
-# define GV_SPLINES		"splines=curved"
+# define GV_RANKDIR_LR	"rankdir=LR"
 # define GV_EDGE		"edge [color=grey]"
-# define GV_NODE		"node [color=skyblue, fillcolor=azure, style=filled]"
+# define GV_NODE		"node [color=skyblue, "\
+						"fillcolor=azure, "\
+						"style=filled]"
 
 /*
 ** Nodes START & END
 */
 # define LABEL_START	"label=START"
 # define LABEL_END		"label=END"
-# define GV_STARTEND	"shape=box, fillcolor=skyblue, style=filled, peripheries=2"
-
+# define GV_STARTEND	"shape=box, "\
+						"fillcolor=skyblue, "\
+						"style=filled, "\
+						"peripheries=2"
 
 /*
 ** Nodes on the way
 */
-# define GV_NODE_WAY	"fillcolor=skyblue, style=filled, fontcolor=white"
+# define GV_NODE_WAY	"fillcolor=skyblue, "\
+						"style=filled, "\
+						"fontcolor=white"
 
 #endif
