@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 16:27:33 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 13:53:53 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 15:05:01 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		main(int ac, char **av)
 	ft_map_init(&map);
 	if (ac > 1)
 		ft_read_args(&map, ac, av);
+	ft_deal_help_debug(map);
 	ft_read_fd(&map);
 	find_issues(map, map->start, 0);
 	ft_check_validity(map);

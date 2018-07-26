@@ -62,8 +62,6 @@ void		starts_with_hashtag(t_map **map, char *line, int *loop)
 		(*map)->command = CMD_START;
 	else if (ft_strcmp(line, "##end") == 0)
 		(*map)->command = CMD_END;
-	//else if (...)
-		//comment
 	if ((*map)->command && (*map)->ants <= 0)
 		*loop = 0;
 }

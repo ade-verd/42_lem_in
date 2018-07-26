@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 13:51:42 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 15:04:38 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,16 @@ typedef struct	s_map
 	int				fd;
 }				t_map;
 
+typedef struct	s_hlp
+{
+	char			*option;
+	char			*details;
+}				t_hlp;
+
 /*
 ** Help
 */
+void			ft_deal_help_debug(t_map *map);
 
 /*
 ** Map
@@ -180,7 +187,6 @@ void			ft_create_graphfile(t_map *map);
 ** Errors
 */
 void			ft_error(t_map **map, char *precision, int errnum);
-void			ft_error_sdl(t_map **map, char *precision, char *precision2);
 int				none(void);
 
 #endif
