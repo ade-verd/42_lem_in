@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:30:43 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 14:30:54 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 16:19:22 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ static void	fdprint_rooms_links(t_map *map, int fd)
 		if (cpy == map->start || cpy == map->end)
 		{
 			label = (cpy == map->start) ? LABEL_START : LABEL_END;
-			ft_dprintf(fd, "\t\"%s\" [%s, %s];\n", cpy->id, label, GV_STARTEND);
+			//ft_dprintf(fd, "\t\"%s\" [%s, %s];\n", cpy->id, label, GV_STARTEND);
+			ft_dprintf(fd, "\t\"%s\" [label=\"%s\\n%s\", %s];\n",
+						cpy->id, label, cpy->id, GV_STARTEND);
 		}
 		else if (cpy->way)
 			ft_dprintf(fd, "\t\"%s\" [%s];\n", cpy->id, GV_NODE_WAY);
@@ -87,6 +89,7 @@ static void	fdprint_rooms_links(t_map *map, int fd)
 static void	write_dotfile(t_map *map, int fd)
 {
 	ft_dprintf(fd, "graph G {\n");
+	ft_dprintf(fd, "\t%s;\n", GV_GRAPH);
 	ft_dprintf(fd, "\t%s;\n", GV_CONCENTRATE);
 	ft_dprintf(fd, "\t%s;\n", GV_BGCOLOR);
 	if ((map->flags & FLAG_GRAPH_LR) != 0)

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:50:41 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 14:39:02 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 16:12:00 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 /*
 ** General
 */
+# define GV_GRAPH 		"graph [label=\"ade-verd's graph\", "\
+						"labelloc=t, "\
+						"fontsize=30]"
 # define GV_CONCENTRATE	"concentrate=true"
 # define GV_BGCOLOR		"bgcolor=transparent"
 # define GV_RANKDIR_LR	"rankdir=LR"
@@ -31,8 +34,8 @@
 /*
 ** Nodes START & END
 */
-# define LABEL_START	"label=START"
-# define LABEL_END		"label=END"
+# define LABEL_START	"START"
+# define LABEL_END		"END"
 # define GV_STARTEND	"shape=box, "\
 						"fillcolor=skyblue, "\
 						"style=filled, "\
