@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 15:20:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/25 14:36:15 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 18:49:59 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	arecrossing(t_map *map, t_room **way_rooms, t_room *checkroom)
 		if (way_rooms[i] != map->start && way_rooms[i] != map->end)
 		{
 			if (way_rooms[i] == checkroom)
-				return(1);
+				return (1);
 		}
 		i++;
 	}

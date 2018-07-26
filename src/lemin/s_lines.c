@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 18:37:16 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/26 12:37:56 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 18:47:51 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_read_lines(t_map *map)
 	ft_putchar('\n');
 }
 
-void	ft_lines_del(t_line	*lines)
+void	ft_lines_del(t_line *lines)
 {
 	t_line	*cpy;
 

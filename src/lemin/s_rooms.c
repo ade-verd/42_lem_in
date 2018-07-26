@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 18:36:13 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 12:24:08 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 18:49:43 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_room	*ft_create_room(t_map **map, t_room **current, char **room_info)
 	new->x = ft_atoi(room_info[1]);
 	new->y = ft_atoi(room_info[2]);
 	new->ant_id = 0;
-	//new->way = -1;
 	new->way = 0;
 	new->link = NULL;
 	new->next = NULL;

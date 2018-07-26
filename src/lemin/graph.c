@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:30:43 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 17:21:34 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 18:49:17 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static void	fdprint_rooms_links(t_map *map, int fd)
 		cpy = cpy->next;
 	}
 }
+
 static void	write_dotfile(t_map *map, int fd)
 {
 	ft_dprintf(fd, "graph G {\n");
@@ -98,7 +99,8 @@ static void	write_dotfile(t_map *map, int fd)
 	fdprint_rooms_links(map, fd);
 	ft_putstr_fd("}\n\0", fd);
 }
-void	ft_create_graphfile(t_map *map)
+
+void		ft_create_graphfile(t_map *map)
 {
 	int		fd;
 
@@ -111,7 +113,7 @@ void	ft_create_graphfile(t_map *map)
 		ft_error(&map, "ft_create_graphfile", 0);
 	if (!fork())
 	{
-		if ((execlp ("sh", "sh", GRAPH_SH, DOTFILE, OUTPUTFILE, NULL)) == -1)
+		if ((execlp("sh", "sh", GRAPH_SH, DOTFILE, OUTPUTFILE, NULL)) == -1)
 		{
 			ft_dprintf(2, "Graphviz execution failed\n");
 			ft_dprintf(2, "Try:\tdot -Tpng %s -o %s\n", DOTFILE, OUTPUTFILE);

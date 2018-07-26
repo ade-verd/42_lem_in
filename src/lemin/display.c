@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 18:29:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 14:44:06 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 18:44:48 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_read_links(t_room *current)
 	{
 		ft_printf("%s", link->to->id);
 		if (link->next)
-			ft_putstr(", ");	
+			ft_putstr(", ");
 		link = link->next;
 	}
 	ft_putchar('\n');

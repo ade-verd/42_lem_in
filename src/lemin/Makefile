@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/07/26 13:50:10 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/07/26 18:43:24 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRC_NAME = 	\
 			s_ways.c\
 			s_lines.c\
 			\
+			errors_manager.c\
 			reader.c\
 			commands.c\
 			validity.c\
@@ -71,7 +72,6 @@ SRC_NAME = 	\
 			move.c\
 
 SRC_NAME_MUTUAL = \
-			errors_manager.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_NAME_MUTUAL = $(SRC_NAME_MUTUAL:.c=.o)

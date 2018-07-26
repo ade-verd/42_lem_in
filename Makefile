@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/06/23 16:10:42 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/07/26 18:42:17 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,7 @@ norme:
 	@echo -e "$(TITLE)Norminette: $(NAME_VWR)$(END_TITLE)"
 	@$(MAKE) $(VWR_PATH) norme
 
-norm: 
+norm:
 	norminette **/**.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
 
 init_submodules:

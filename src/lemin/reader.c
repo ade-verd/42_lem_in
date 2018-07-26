@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/17 18:07:11 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/20 20:19:27t by ade-verd         ###   ########.fr       */
+/*   Created: 2018/07/26 18:50:18 by ade-verd          #+#    #+#             */
+/*   Updated: 2018/07/26 18:50:32 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	ft_check_args(t_map *map, char *str)
 void		ft_read_args(t_map **map, int ac, char **av)
 {
 	char	**tab;
-	int 	i;
+	int		i;
 
 	while (ac > 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 15:04:38 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 17:24:37 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@
 # include "ft_printf.h"
 # include "graph.h"
 
-# define FLAG_HELP			1 // help
-# define FLAG_DEBUG_FLAGS	2 // -d debug flags
-# define FLAG_ROOMS			4 // -r rooms
-# define FLAG_WAYS_SEL		8 // -w selected ways
-# define FLAG_WAYS_ALL		16 // -W all ways
-# define FLAG_STATUS		32 // -s status : launched, in start, arrived && check
-# define FLAG_CONTEXT_NO	64 // -c no context
-# define FLAG_MUTE			128 // -m mute > activate -s && -c
-# define FLAG_GRAPH_TB		256 // -g graphviz - rankdir top to bottom
-# define FLAG_GRAPH_LR		512 // -G graphviz - rankdir left to right
+# define FLAG_HELP			1
+# define FLAG_DEBUG_FLAGS	2
+# define FLAG_ROOMS			4
+# define FLAG_WAYS_SEL		8
+# define FLAG_WAYS_ALL		16
+# define FLAG_STATUS		32
+# define FLAG_CONTEXT_NO	64
+# define FLAG_MUTE			128
+# define FLAG_GRAPH_TB		256
+# define FLAG_GRAPH_LR		512
 
 # define REVERSE			-1
 # define CMD_START			1
 # define CMD_END			2
 
-struct			s_link;
+struct s_link;
 
 typedef struct	s_room
 {
