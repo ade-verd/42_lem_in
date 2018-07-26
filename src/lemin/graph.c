@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:30:43 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 13:23:33 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 14:30:54 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,10 @@ void	ft_create_graphfile(t_map *map)
 		ft_error(&map, "ft_create_graphfile", 0);
 	if (!fork())
 	{
-		if ((execlp ("sh", "sh", GRAPH_SH, DOTFILE, PNGFILE, NULL)) == -1)
+		if ((execlp ("sh", "sh", GRAPH_SH, DOTFILE, OUTPUTFILE, NULL)) == -1)
 		{
 			ft_dprintf(2, "Graphviz execution failed\n");
-			ft_dprintf(2, "Try:\tdot -Tpng %s -o %s\n", DOTFILE, PNGFILE);
+			ft_dprintf(2, "Try:\tdot -Tpng %s -o %s\n", DOTFILE, OUTPUTFILE);
 		}
 	}
 	else

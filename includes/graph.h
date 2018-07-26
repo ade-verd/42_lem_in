@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 14:50:41 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 13:23:41 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/26 14:39:02 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define GRAPH_SH		"./scripts/create_graph.sh"
 # define DOTFILE		"./.graph/graph.dot"
-# define PNGFILE		"./.graph/mygraph.png"
+# define OUTPUTFILE		"./.graph/mygraph"
 
 /*
 ** General
