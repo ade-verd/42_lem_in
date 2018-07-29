@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/24 15:30:43 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/29 15:32:05 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 18:41:05 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** static int	link_is_on_way(t_map *map, t_room *r1, t_room *r2, int *par)
+** Checks if a link is on a selected path
+*/
 
 static int	link_is_on_way(t_map *map, t_room *r1, t_room *r2, int *par)
 {
@@ -40,6 +45,11 @@ static int	link_is_on_way(t_map *map, t_room *r1, t_room *r2, int *par)
 	return (0);
 }
 
+/*
+** static void	fdprint_links(t_map *map, t_room *current, int fd)
+** Writes links in the file descriptor
+*/
+
 static void	fdprint_links(t_map *map, t_room *current, int fd)
 {
 	t_link	*link;
@@ -62,6 +72,11 @@ static void	fdprint_links(t_map *map, t_room *current, int fd)
 		link = link->next;
 	}
 }
+
+/*
+** static void	fdprint_rooms_links(t_map *map, int fd)
+** Writes rooms in the file descriptor
+*/
 
 static void	fdprint_rooms_links(t_map *map, int fd)
 {
@@ -86,6 +101,11 @@ static void	fdprint_rooms_links(t_map *map, int fd)
 	}
 }
 
+/*
+** static void	write_dotfile(t_map *map, int fd)
+** Writes file.dot with file descriptor opened
+*/
+
 static void	write_dotfile(t_map *map, int fd)
 {
 	ft_dprintf(fd, "graph G {\n");
@@ -99,6 +119,11 @@ static void	write_dotfile(t_map *map, int fd)
 	fdprint_rooms_links(map, fd);
 	ft_putstr_fd("}\n\0", fd);
 }
+
+/*
+** void		ft_create_graphfile(t_map *map)
+** Creates graph file (main function)
+*/
 
 void		ft_create_graphfile(t_map *map)
 {

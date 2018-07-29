@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 11:55:32 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/29 15:48:55 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 17:39:13 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,22 @@ static int	ft_isinteger(char *str)
 	return (1);
 }
 
+/*
+** int	ft_isant(char *str, int *loop)
+** Checks ants validity
+*/
+
 int			ft_isant(char *str, int *loop)
 {
 	if (ft_isinteger(str))
 		return (1);
 	return (*loop = 0);
 }
+
+/*
+** int	ft_isroom(char *str, int *loop)
+** Checks validity of a room
+*/
 
 int			ft_isroom(char *str, int *loop)
 {
@@ -57,6 +67,11 @@ int			ft_isroom(char *str, int *loop)
 	return (*loop);
 }
 
+/*
+** int	ft_islink(t_map **map, char *str, int *loop)
+** Checks validity of a link
+*/
+
 int			ft_islink(t_map **map, char *str, int *loop)
 {
 	char	**tab;
@@ -71,6 +86,11 @@ int			ft_islink(t_map **map, char *str, int *loop)
 	ft_freetab_strsplit(tab);
 	return (*loop);
 }
+
+/*
+** void	ft_check_validity(t_map *map)
+** Checks ants, rooms, start and end
+*/
 
 void		ft_check_validity(t_map *map)
 {

@@ -6,14 +6,14 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 17:35:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 14:54:45 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 17:25:16 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 /*
-** void	ft_error(t_heaps **ab, char *precision)
+** void	ft_error(t_map **map, char *precision, int errnum)
 ** Displays "Error" (and eventually precision), Frees everything, and exit
 */
 

@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/26 18:50:18 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 18:50:32 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 18:34:04 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** static void	ft_check_args(t_map *map, char *str)
+** Checks arguments
+*/
 
 static void	ft_check_args(t_map *map, char *str)
 {
@@ -40,6 +45,11 @@ static void	ft_check_args(t_map *map, char *str)
 		map->flags = map->flags | FLAG_GRAPH_LR;
 }
 
+/*
+** void	ft_read_args(t_map **map, int ac, char **av)
+** Reads arguments
+*/
+
 void		ft_read_args(t_map **map, int ac, char **av)
 {
 	char	**tab;
@@ -56,6 +66,11 @@ void		ft_read_args(t_map **map, int ac, char **av)
 	}
 }
 
+/*
+** void	starts_with_hashtag(t_map **map, char *line, int *loop)
+** Manages commands ##commands
+*/
+
 void		starts_with_hashtag(t_map **map, char *line, int *loop)
 {
 	if (ft_strcmp(line, "##start") == 0)
@@ -65,6 +80,11 @@ void		starts_with_hashtag(t_map **map, char *line, int *loop)
 	if ((*map)->command && (*map)->ants <= 0)
 		*loop = 0;
 }
+
+/*
+** void	ft_read_fd(t_map **map)
+** Reads file descriptor
+*/
 
 void		ft_read_fd(t_map **map)
 {

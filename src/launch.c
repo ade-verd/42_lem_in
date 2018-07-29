@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/22 14:28:17 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/23 17:27:42 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 18:37:25 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** static void	status_ants(t_map *map)
+** Displays status
+*/
 
 static void	status_ants(t_map *map)
 {
@@ -27,6 +32,11 @@ static void	status_ants(t_map *map)
 			ft_printf("ERROR\n");
 	}
 }
+
+/*
+** void	launch_ants(t_map *map)
+** Launches ant(s) from start to first room of selected ways
+*/
 
 void		launch_ants(t_map *map)
 {
@@ -47,6 +57,11 @@ void		launch_ants(t_map *map)
 		ways = ways->next;
 	}
 }
+
+/*
+** void	solve(t_map *map)
+** Solves map. Moves every ants and then launches ants.
+*/
 
 void		solve(t_map *map)
 {

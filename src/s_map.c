@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 18:30:07 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 18:49:34 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 18:23:07 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** void	ft_map_init(t_map **map)
+** Initializes map
+*/
 
 void	ft_map_init(t_map **map)
 {
@@ -32,6 +37,11 @@ void	ft_map_init(t_map **map)
 	(*map)->flags = 0;
 	(*map)->fd = 0;
 }
+
+/*
+** void	ft_map_del(t_map **map)
+** Deletes map
+*/
 
 void	ft_map_del(t_map **map)
 {

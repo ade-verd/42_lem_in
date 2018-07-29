@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 12:31:13 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 18:44:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 17:20:34 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** static void	ft_command_start(t_map *map, t_room *new)
+** Manages ##start command
+*/
 
 static void		ft_command_start(t_map *map, t_room *new)
 {
@@ -20,6 +25,11 @@ static void		ft_command_start(t_map *map, t_room *new)
 		ft_error(&map, "Multiple start", 0);
 }
 
+/*
+** static void	ft_command_end(t_map *map, t_room *new)
+** Manages ##end command
+*/
+
 static void		ft_command_end(t_map *map, t_room *new)
 {
 	if (!map->end)
@@ -27,6 +37,11 @@ static void		ft_command_end(t_map *map, t_room *new)
 	else
 		ft_error(&map, "Multiple end", 0);
 }
+
+/*
+** void	ft_command(t_map *map, t_room *new)
+** Manages commands (##command)
+*/
 
 void			ft_command(t_map *map, t_room *new)
 {

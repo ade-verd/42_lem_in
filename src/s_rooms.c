@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/25 18:36:13 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 18:49:43 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 18:20:48 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** t_room	*get_room_ptr(t_map **map, char *id)
+** Takes a char *id and try to returns the room's pointer
+*/
 
 t_room	*get_room_ptr(t_map **map, char *id)
 {
@@ -25,6 +30,11 @@ t_room	*get_room_ptr(t_map **map, char *id)
 	}
 	return (NULL);
 }
+
+/*
+** t_room	*ft_create_room(t_map **map, t_room **current, char **room_info)
+** Creates a room (memomry allocation)
+*/
 
 t_room	*ft_create_room(t_map **map, t_room **current, char **room_info)
 {
@@ -54,6 +64,11 @@ t_room	*ft_create_room(t_map **map, t_room **current, char **room_info)
 	return (new);
 }
 
+/*
+** t_room	*ft_add_room(t_map **map, char **room_info)
+** Creates a room (main function)
+*/
+
 t_room	*ft_add_room(t_map **map, char **room_info)
 {
 	t_room	*cpy;
@@ -69,6 +84,11 @@ t_room	*ft_add_room(t_map **map, char **room_info)
 		ft_command(*map, new);
 	return (new);
 }
+
+/*
+** void	ft_rooms_del(t_room **rooms)
+** Delete rooms
+*/
 
 void	ft_rooms_del(t_room **rooms)
 {

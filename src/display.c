@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 18:29:03 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 18:44:48 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 18:31:07 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** void	ft_read_all_ways(t_map *map)
+** Prints all paths
+*/
 
 void	ft_read_all_ways(t_map *map)
 {
@@ -35,6 +40,11 @@ void	ft_read_all_ways(t_map *map)
 	ft_putchar('\n');
 }
 
+/*
+** void	ft_read_selected_ways(t_map *map)
+** Prints only selected paths
+*/
+
 void	ft_read_selected_ways(t_map *map)
 {
 	t_way	*ways;
@@ -57,6 +67,11 @@ void	ft_read_selected_ways(t_map *map)
 	ft_putchar('\n');
 }
 
+/*
+** void	ft_read_links(t_room *current)
+** Prints links
+*/
+
 void	ft_read_links(t_room *current)
 {
 	t_link	*link;
@@ -73,6 +88,11 @@ void	ft_read_links(t_room *current)
 	ft_putchar('\n');
 }
 
+/*
+** void	ft_read_rooms(t_map *map)
+** Prints rooms
+*/
+
 void	ft_read_rooms(t_map *map)
 {
 	t_room	*cpy;
@@ -85,13 +105,17 @@ void	ft_read_rooms(t_map *map)
 		if (cpy == map->end)
 			ft_putstr(F_RED);
 		ft_printf("☐ id (x, y):\t%s (%d, %d)\n", cpy->id, cpy->x, cpy->y);
-		ft_printf("  way:\t\t%d\n", cpy->way);
 		ft_read_links(cpy);
 		ft_putstr(F_NO);
 		cpy = cpy->next;
 	}
 	ft_putchar('\n');
 }
+
+/*
+** void	ft_display_context(t_map *map)
+** Displays context (cf. Flags: ./lem-in -h)
+*/
 
 void	ft_display_context(t_map *map)
 {
@@ -100,7 +124,7 @@ void	ft_display_context(t_map *map)
 	if ((map->flags & FLAG_MUTE) != 0)
 		return ;
 	if ((map->flags & FLAG_CONTEXT_NO) == 0)
-		ft_read_lines(map);
+		ft_print_lines(map);
 	if ((map->flags & FLAG_ROOMS) != 0)
 		ft_read_rooms(map);
 	if ((map->flags & FLAG_WAYS_SEL) != 0 && (map->flags & FLAG_WAYS_ALL) == 0)

@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 18:10:20 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/29 16:46:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 18:17:10 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** static t_room	**ft_create_tabrooms(t_map **map, t_room **copy)
+** Creates t_room **tab of rooms which represents a way
+*/
 
 static t_room	**ft_create_tabrooms(t_map **map, t_room **copy)
 {
@@ -27,6 +32,11 @@ static t_room	**ft_create_tabrooms(t_map **map, t_room **copy)
 	}
 	return (tab);
 }
+
+/*
+** t_way	*ft_add_way(t_map **map)
+** Adds a new way
+*/
 
 t_way			*ft_add_way(t_map **map)
 {
@@ -56,6 +66,11 @@ t_way			*ft_add_way(t_map **map)
 	return (new);
 }
 
+/*
+** void	ft_fill_lastway(t_map **map, t_room *current, int index)
+** Fills t_room **rooms[index]
+*/
+
 void			ft_fill_lastway(t_map **map, t_room *current, int index)
 {
 	t_way	*last;
@@ -75,6 +90,11 @@ void			ft_fill_lastway(t_map **map, t_room *current, int index)
 		ft_error(map, (char*)__FUNCTION__, EFAULT);
 }
 
+/*
+** void	ft_swap_ways(t_way *a, t_way *b)
+** Swaps two ways
+*/
+
 void			ft_swap_ways(t_way *a, t_way *b)
 {
 	int		tmp_par;
@@ -91,6 +111,11 @@ void			ft_swap_ways(t_way *a, t_way *b)
 	b->select = tmp_select;
 	b->rooms = tmp_rooms;
 }
+
+/*
+** void	ft_ways_del(t_way **ways)
+** Deletes the way and t_room **rooms associated
+*/
 
 void			ft_ways_del(t_way **ways)
 {

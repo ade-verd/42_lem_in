@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/28 11:37:19 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 17:24:37 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 18:25:20 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void			ft_swap_ways(t_way *a, t_way *b);
 */
 t_line			*ft_add_line(t_map *map, char *line);
 void			ft_lines_del(t_line	*lines);
-void			ft_read_lines(t_map *map);
+void			ft_print_lines(t_map *map);
 
 /*
 ** Reader

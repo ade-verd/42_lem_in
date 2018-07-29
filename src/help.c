@@ -6,13 +6,14 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 12:43:44 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 15:14:40 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 18:39:01 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 /*
+** void	ft_help(void)
 ** lem-in help and flags debug
 */
 
@@ -41,6 +42,11 @@ void	ft_help(void)
 	}
 }
 
+/*
+** void	ft_flag_debug(t_map *map)
+** Prints flags activated with binary display
+*/
+
 void	ft_flag_debug(t_map *map)
 {
 	ft_help();
@@ -52,6 +58,11 @@ void	ft_flag_debug(t_map *map)
 	else
 		ft_putchar('\n');
 }
+
+/*
+** void	ft_deal_help_debug(t_map *map)
+** Manage ft_help and ft_flag_debug (main function)
+*/
 
 void	ft_deal_help_debug(t_map *map)
 {

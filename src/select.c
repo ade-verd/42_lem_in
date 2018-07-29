@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 15:20:35 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 18:49:59 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 17:43:30 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** static int	arecrossing(t_map *map, t_room **way_rooms, t_room *checkroom)
+** Checks if a room is crossing a way
+*/
 
 static int	arecrossing(t_map *map, t_room **way_rooms, t_room *checkroom)
 {
@@ -28,6 +33,11 @@ static int	arecrossing(t_map *map, t_room **way_rooms, t_room *checkroom)
 	}
 	return (0);
 }
+
+/*
+** static int	iscompatible_with_selected(t_map *map, t_room **rooms)
+** Checks if a way is compatible with ways already choosed
+*/
 
 static int	iscompatible_with_selected(t_map *map, t_room **rooms)
 {
@@ -49,6 +59,11 @@ static int	iscompatible_with_selected(t_map *map, t_room **rooms)
 	return (1);
 }
 
+/*
+** static void	ft_rooms_on_the_way(t_room **way_rooms)
+** Applies an indicator to selected ways
+*/
+
 static void	ft_rooms_on_the_way(t_room **way_rooms)
 {
 	int		i;
@@ -60,6 +75,11 @@ static void	ft_rooms_on_the_way(t_room **way_rooms)
 		i++;
 	}
 }
+
+/*
+** void	ft_select_issues(t_map *map)
+** Chooses ways among all the possible paths
+*/
 
 void		ft_select_issues(t_map *map)
 {

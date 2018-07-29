@@ -6,11 +6,16 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/20 12:02:59 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/07/26 18:47:02 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 18:45:58 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+/*
+** static int	inway(t_map *map, t_room *room)
+** If the program has already been through this room, the program returns 1.
+*/
 
 static int	inway(t_map *map, t_room *room)
 {
@@ -29,6 +34,11 @@ static int	inway(t_map *map, t_room *room)
 	}
 	return (0);
 }
+
+/*
+** int	find_issues(t_map *map, t_room *current, int hit)
+** Recursive function who tries to find every issues
+*/
 
 int			find_issues(t_map *map, t_room *current, int hit)
 {
@@ -58,6 +68,11 @@ int			find_issues(t_map *map, t_room *current, int hit)
 	return (0);
 }
 
+/*
+** int	ft_count_issues(t_map *map)
+** Counts issues
+*/
+
 int			ft_count_issues(t_map *map)
 {
 	int		count;
@@ -72,6 +87,11 @@ int			ft_count_issues(t_map *map)
 	}
 	return (count);
 }
+
+/*
+** void	ft_sort_issues(t_map *map)
+** Sorts issues
+*/
 
 void		ft_sort_issues(t_map *map)
 {
@@ -89,6 +109,11 @@ void		ft_sort_issues(t_map *map)
 			ways = ways->next;
 	}
 }
+
+/*
+** void	ft_sort_selected_issues(t_map *map)
+** Sorts selected issues
+*/
 
 void		ft_sort_selected_issues(t_map *map)
 {
