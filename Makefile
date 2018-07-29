@@ -6,7 +6,7 @@
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/07/29 15:15:09 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/07/29 20:00:16 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -191,6 +191,7 @@ norm:
 # Submodules
 init_submodule:
 	git submodule update --init --recursive
+	make update_submodule
 
 update_submodule:
 	git submodule update --recursive --remote
