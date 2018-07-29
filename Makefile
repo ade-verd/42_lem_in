@@ -5,25 +5,102 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/12/05 13:46:57 by ade-verd          #+#    #+#              #
-#    Updated: 2018/07/26 18:42:17 by ade-verd         ###   ########.fr        #
+#    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
+#    Updated: 2018/07/29 15:15:09 by ade-verd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Binary
-NAME = lem_in_and_visu
-NAME_LEM = lem-in
-NAME_VWR = visu-hex
+NAME = lem-in
+
+# Compiler
+CC = gcc
 
 # Directories
-SRC_PATH = src
-LEM_PATH = $(SRC_PATH)/lemin
-VWR_PATH = $(SRC_PATH)/visuhex
-LIB_PATH = libftprintf/libft
-OBJ_PATH = obj
+PROJECT_PATH = ./
+SRC_PATH = $(PROJECT_PATH)src/
+SRC_PATH_NAME = $(notdir $(CURDIR))
+OBJ_PATH = $(PROJECT_PATH)obj/$(SRC_PATH_NAME)/
+SCRIPTS_PATH = $(PROJECT_PATH)scripts/
+GRAPH_PATH = $(PROJECT_PATH).graph/
+PRINTF_PATH = $(PROJECT_PATH)libftprintf/
+LIBFT_PATH = $(PRINTF_PATH)libft/
+LIB_PATH = $(LIBFT_PATH) $(PRINTF_PATH) 
+INC_PATH = $(PROJECT_PATH)includes/ \
+		   $(addsuffix includes/, $(LIB_PATH))
+
+# Includes & libraries
+SDL2_CLAGS = $(shell sdl2-config --cflags)
+SDL2_LIBS = $(shell sdl2-config --libs)
+CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CLAGS) #`sdl2-config --cflags`
+LDFLAGS = $(addprefix -L ,$(LIB_PATH)) $(SDL2_LIBS) #`sdl2-config --libs`
+LDLIBS = -lft -lftprintf
+
+DEPENDENCIES = 	$(PROJECT_PATH)includes/lemin.h\
+				$(PROJECT_PATH)includes/graph.h\
+
+
+# Prerequisites
+PREREQUISITES_NAME = 	\
+						setup_graphviz.sh\
+#						setup_sdl2.sh\
+
+PREREQUISITES = $(addprefix $(SCRIPTS_PATH), $(PREREQUISITES_NAME))
+
+# Sources
+SRC_NAME = 	\
+			main.c\
+			\
+			s_map.c\
+			s_rooms.c\
+			s_links.c\
+			s_ways.c\
+			s_lines.c\
+			\
+			reader.c\
+			commands.c\
+			validity.c\
+			issues.c\
+			select.c\
+			display.c\
+			graph.c\
+			\
+			launch.c\
+			move.c\
+			\
+			errors_manager.c\
+			help.c\
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+
+SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
+
+# Flags with OS Compatibiliy
+OS = $(shell uname)
+ifeq ($(OS), Darwin)
+	FLAGS_DEFAULT = -Werror -Wall -Wextra
+endif
+ifeq ($(OS), Linux)
+	FLAGS_DEFAULT = -Wno-unused-result
+endif
+ifdef FLAGS
+	ifeq ($(FLAGS), no)
+		CFLAGS := $(ADDFLAGS)
+	endif
+	ifeq ($(FLAGS), debug)
+		CFLAGS := $(FLAGS_DEFAULT) -ansi -pedantic -g $(ADDFLAGS)
+	endif
+else
+	CFLAGS := $(FLAGS_DEFAULT) $(ADDFLAGS)
+endif
 
 # MAKEFLAGS
-MAKE = make --no-print-directory -C #$(MAKEFLAGS)
+MAKE = make | perl -ne '$|=1; print unless /nothing to be done|up to date/i'
+MAKEC = make -s --no-print-directory -C
+
+# Variables
+COUNTER=0
 
 # **************************************************************************** #
 # SPECIALS CHARS                                                               #
@@ -57,61 +134,63 @@ BIN_DEL = "--$(LOG_CLEAR)$(LOG_YELLOW)Binary$(LOG_NOCOLOR) deletion " \
 # **************************************************************************** #
 # RULES                                                                        #
 # **************************************************************************** #
-.PHONY: all, clean, fclean, re, norme, norm, lem-in, visu-hex\
-		init_submodules, update_submodules
+.PHONY: all, clean, fclean, re, norme, norm, \
+		prerequisites, libftprintf.a \
+		init_submodule update_submodule
 
 all: $(NAME)
 
-$(NAME): $(NAME_LEM) $(NAME_VWR)
+$(NAME): prerequisites $(OBJ_PATH) $(OBJ)
+	@$(CC) $(OBJ) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+	@if [ $(COUNTER) -ne 0 ]; then echo -e $(ASSEMBLING); fi;
 
-$(NAME_LEM): force
-	@$(MAKE) $(LEM_PATH) $@
-	@if [ -h $@ ]; then rm -f $@; fi;
-	@ln -s $(LEM_PATH)/$@ .
+prerequisites:
+	@$(foreach PREREQUISITES_NAME, $(PREREQUISITES_NAME), $(PREREQUISITES);)
+	@make libftprintf.a
+	@mkdir -p $(GRAPH_PATH)
 
-$(NAME_VWR): force
-	@$(MAKE) $(VWR_PATH) $@
-	@if [ -h $@ ]; then rm -f $@; fi;
-	@ln -s $(VWR_PATH)/$@ .
+libftprintf.a:
+	@$(MAKEC) $(PRINTF_PATH) $@
 
-force:
-	@true
+$(OBJ_PATH):
+	@echo -e "$(TITLE)build $(NAME)$(END_TITLE)"
+	@echo -e "--$(LOG_CLEAR)Flags : $(CFLAGS)"
+	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)/$(SRC_PATH_MUTUAL)
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(DEPENDENCIES)
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@echo -e $(LINKING)
+	@$(eval COUNTER=$(shell echo $$(($(COUNTER)+1))))
 
 clean:
-	@$(MAKE) $(LEM_PATH) clean
-	@$(MAKE) $(VWR_PATH) clean
+	@echo -e "$(TITLE)clean $(NAME)$(END_TITLE)"
+	@echo -e $(OBJECTS_DEL)
 	@rm -Rf $(OBJ_PATH)
+	@$(MAKEC) $(PRINTF_PATH) clean_quiet
 
 fclean:
-	@$(MAKE) $(LEM_PATH) fclean
-	@$(MAKE) $(VWR_PATH) fclean
+	@echo -e "$(TITLE)fclean $(NAME)$(END_TITLE)"
+	@echo -e $(OBJECTS_DEL)
 	@rm -Rf $(OBJ_PATH)
-	@if [ -h $(NAME_LEM) ]; then rm -f $(NAME_LEM); fi;
-	@if [ -h $(NAME_VWR) ]; then rm -f $(NAME_VWR); fi;
+	@echo -e $(BIN_DEL)
+	@rm -f $(NAME)
+	@rm -Rf $(GRAPH_PATH)
+	@$(MAKEC) $(PRINTF_PATH) fclean_quiet
 
 re: fclean all
 
+# Norm
 norme:
-	@echo -e "$(TITLE)Norminette: $(NAME_LEM)$(END_TITLE)"
-	@$(MAKE) $(LEM_PATH) norme
-	@echo -e "$(TITLE)Norminette: $(NAME_VWR)$(END_TITLE)"
-	@$(MAKE) $(VWR_PATH) norme
+	norminette $(SRC)
+	norminette $(addprefix $(INC_PATH), *.h)
 
-norm:
+norm: 
 	norminette **/**.[ch] | grep -B 1 "Error\|Warning" || echo "norme OK"
 
-init_submodules:
+# Submodules
+init_submodule:
 	git submodule update --init --recursive
 
-update_submodules:
+update_submodule:
 	git submodule update --recursive --remote
-
-# **************************************************************************** #
-# Personal notes :                                                             #
-#                                                                              #
-# $@ : rule's name                                                             #
-# $^ : all dependencies after ':'                                              #
-# $< : corresponding dependency                                                #
-# || : of there is an error, execute the command after the double pipe         #
-#                                                                              #
-# **************************************************************************** #
