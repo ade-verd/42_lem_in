@@ -6,7 +6,7 @@
 /*   By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 11:55:32 by ade-verd          #+#    #+#             */
-/*   Updated: 2018/06/26 12:08:28 by ade-verd         ###   ########.fr       */
+/*   Updated: 2018/07/29 15:48:55 by ade-verd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,4 @@ void		ft_check_validity(t_map *map)
 		ft_error(&map, "No start", 0);
 	if (!map->end)
 		ft_error(&map, "No end", 0);
-	if (!ft_count_issues(map))
-		ft_error(&map, "No issue", 0);
 }
