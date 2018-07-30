@@ -19,7 +19,7 @@ KO_MSG="Please check and install manually"
 
 NAME="libSDL2"
 
-if [ "$OS" == Darwin ]
+if [ "$OS" = 'Darwin' ]
 	then
 	if !(brew ls --versions sdl2 > /dev/null)
 	then
@@ -28,7 +28,7 @@ if [ "$OS" == Darwin ]
 		brew update
 		brew install sdl2
 	fi
-elif [ "$OS" == Linux ]
+elif [ "$OS" = 'Linux' ]
 	then
 	if !(dpkg -s libsdl2-dev > /dev/null)
 	then

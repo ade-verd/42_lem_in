@@ -13,10 +13,10 @@ dot -Tpng $DOTFILE -o $OUTPUT.png
 dot -Tsvg $DOTFILE -o $OUTPUT.svg
 
 OS=`uname`
-if [ "$OS" == Darwin ]
+if [ "$OS" = 'Darwin' ]
 	then
 	open $OUTPUT.png
-elif [ "$OS" == Linux ]
+elif [ "$OS" = 'Linux' ]
 	then
 	eog $OUTPUT.png
 #	feh $OUTPUT.png

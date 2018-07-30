@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ade-verd <ade-verd@student.42.fr>          +#+  +:+       +#+         #
+#    By: aurelien <aurelien@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/23 12:33:34 by ade-verd          #+#    #+#              #
-#    Updated: 2018/07/29 20:03:18 by ade-verd         ###   ########.fr        #
+#    Updated: 2018/07/30 16:58:49 by aurelien         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,8 @@ INC_PATH = $(PROJECT_PATH)includes/ \
 		   $(addsuffix includes/, $(LIB_PATH))
 
 # Includes & libraries
-SDL2_CLAGS = $(shell sdl2-config --cflags)
-SDL2_LIBS = $(shell sdl2-config --libs)
+# SDL2_CLAGS = $(shell sdl2-config --cflags)
+# SDL2_LIBS = $(shell sdl2-config --libs)
 CPPFLAGS = $(addprefix -I ,$(INC_PATH)) $(SDL2_CLAGS) #`sdl2-config --cflags`
 LDFLAGS = $(addprefix -L ,$(LIB_PATH)) $(SDL2_LIBS) #`sdl2-config --libs`
 LDLIBS = -lft -lftprintf

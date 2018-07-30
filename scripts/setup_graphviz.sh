@@ -19,19 +19,19 @@ KO_MSG="Please check and install manually"
 
 NAME="graphviz"
 
-if [ "$OS" == Darwin ]
+if [ "$OS" = 'Darwin' ]
 	then
 	if !(brew ls --versions graphviz > /dev/null)
-	then
+		then
 		echo -e $TITLE$TITLE_MSG$END
 		echo -e $SETUP$NAME$END
 		brew update
 		brew install graphviz
 	fi
-elif [ "$OS" == Linux ]
+elif [ "$OS" = 'Linux' ]
 	then
 	if !(dpkg -s graphviz > /dev/null)
-	then
+		then
 		echo -e $TITLE$TITLE_MSG$END
 		echo -e $SETUP$NAME$END
 		sudo apt-get update
