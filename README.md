@@ -58,6 +58,7 @@ L9-5 L10-5
 
 ### Option status -s
 Displays a status at the end
+
 ![graph](00_Subject/option_s.jpeg)
 
 
